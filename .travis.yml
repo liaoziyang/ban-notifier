@@ -9,4 +9,3 @@ before_script:
   - yarn build
 script:
   - yarn test
-  - yarn run coverage
