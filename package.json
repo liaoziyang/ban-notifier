@@ -1,0 +1,10 @@
+{
+  "name": "ban-notifier",
+  "version": "1.0.0",
+  "description": "[LATER]",
+  "main": "index.js",
+  "repository": "git@github.com:emielvanseveren/ban-notifier.git",
+  "author": "Emiel Van Severen <emielvanseveren@outlook.com>",
+  "license": "MIT",
+  "private": true
+}
