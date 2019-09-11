@@ -15,9 +15,11 @@ exports.start = () => (
 exports.IO = () => ({
   devtool:  '',
   target:   'web',
+  // startpoint 
   entry:    [
     path.join(__dirname, '/src/index.js')
   ],
+  // on production this returns one bundled js file. To avoid caching a hash is added. 
   output: {
     chunkFilename:  '[name].js',
     filename:       '[name].bundle.[hash:8].js'
@@ -116,12 +118,14 @@ exports.minimizeImages = () => ({
   ]
 })
 
+// core of webpack all files pass this module. based on which kind it is handled by a different loader. 
 exports.loaders = () => ({
   module: {
     rules: [
       {
         test:     /\.(js|jsx)$/,
         exclude:  /node_modules/,
+        // remember that a file is first handled by stylelint then by babel. If there is a styling error. This will cancel the build and return the styling error. 
         use:      [
           'babel-loader',
           'stylelint-custom-processor-loader'
@@ -151,6 +155,7 @@ exports.loaders = () => ({
         ]
       },
       {
+        // webpack will if the file is smaller than 25000 inline the image, a source less to load with a call. 
         test: /\.(jpg|png|svg|webp)$/,
         use:  {
           loader:   'url-loader',
