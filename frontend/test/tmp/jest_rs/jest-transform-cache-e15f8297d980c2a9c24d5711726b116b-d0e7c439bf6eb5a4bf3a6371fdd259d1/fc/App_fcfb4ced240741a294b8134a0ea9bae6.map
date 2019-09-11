@@ -1,1 +1,0 @@
-{"version":3,"sources":["App.js"],"names":["App"],"mappings":";;;;;;;AAAA;;;;;;;;;;;;;AAEe,SAASA,GAAT,GAAc;AAC3B,SACC,4DADD;AAGD;;;;;;;;;;;0BAJuBA,G","sourcesContent":["import React from 'react'\n\nexport default function App(){\n  return (\n   <div>react works!</div> \n  )\n}"]}
