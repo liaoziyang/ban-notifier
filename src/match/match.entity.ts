@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
-import { TrackedAccount } from '../trackedAccount/trackedAccount.entity';
+import TrackedAccount from '../trackedAccount/trackedAccount.entity';
 
 @Entity()
-export class Match {
+export default class Match {
     @PrimaryGeneratedColumn()
     id: number;
 

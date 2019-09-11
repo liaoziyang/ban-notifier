@@ -1,8 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import { TrackedAccount } from '../trackedAccount/trackedAccount.entity';
+import TrackedAccount from '../trackedAccount/trackedAccount.entity';
 
 @Entity()
-export class Ban {
+export default class Ban {
     @PrimaryGeneratedColumn()
     id: number;
 

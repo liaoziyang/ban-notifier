@@ -1,9 +1,8 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany, ManyToMany } from 'typeorm';
-import { TrackedAccount } from '../trackedAccount/trackedAccount.entity';
-import { Match } from '../match/match.entity';
+import Match from '../match/match.entity';
 
 @Entity()
-export class User extends BaseEntity {
+export default class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
