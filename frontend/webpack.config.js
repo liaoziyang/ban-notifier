@@ -1,6 +1,15 @@
+
+/* 
+  Normaly the webpack config is one big object with a pretty strict order. webpack-merge makes it easier to split these parts up
+  and gives the ability to make a dev and prod environment with no code duplication 
+*/
 const merge = require('webpack-merge')
 const parts = require('./webpack.parts')
 
+/* 
+  Code that is used in both the 
+  development and production environment 
+*/
 const commonConfig = merge([
   parts.start(),
   parts.IO(),
@@ -19,7 +28,7 @@ const productionConfig = merge([
 
 const developmentConfig = merge([
   parts.devServer({
-    // customize host/port here if needed
+    // customize host/port in env
     host: process.env.HOST,
     port: process.env.PORT
   })
