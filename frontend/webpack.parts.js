@@ -43,10 +43,10 @@ exports.devServer = ({ host, port } = {}) => ({
 exports.generateFavicon = () => ({
   plugins: [
     new FaviconsWebpackPlugin({
-      logo:           './src/static/icon/icon.svg',
+      logo:           './public/icon.png',
       statsFilename:  'faviconStats-[hash].json',
       inject:         true,
-      title:          'Lowie Vermaete'
+      title:          'Banter'
     })
   ]
 })
