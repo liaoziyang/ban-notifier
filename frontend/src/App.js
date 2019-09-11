@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function App(){
   return (
-   <div>react works!</div> 
+    <div>react works!</div>
   )
 }
