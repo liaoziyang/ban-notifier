@@ -3,24 +3,24 @@ node_js:
   - node
   - lts/*
 cache: yarn
-before_install:
-  - cd backend
-install:
-  - yarn install
-before_script:
-  - yarn build
-script:
-  - yarn test
-after_success:
-  - yarn pack
-deploy:
-  - provider: releases
-    api_key: $GITHUB_TOKEN
-    file_glob: true
-    file: "ban-notifier-*.tgz"
-    skip_cleanup: true
-    draft: true
-    on:
-      tags: true
-      all_branches: true
-      repo: emielvanseveren/ban-notifier
+
+jobs:
+  include:
+    - stage: backend
+      before_install:
+        - cd backend
+      install:
+        - yarn install
+      before_script:
+        - yarn build
+      script:
+        - yarn test
+    - stage: frontend
+      before_install:
+        - cd frontend
+      install:
+        - yarn install
+      before_script:
+        - yarn build
+      script:
+        - yarn test
