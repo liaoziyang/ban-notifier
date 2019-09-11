@@ -3,6 +3,7 @@
   Normaly the webpack config is one big object with a pretty strict order. webpack-merge makes it easier to split these parts up
   and gives the ability to make a dev and prod environment with no code duplication 
 */
+require('dotenv').config() 
 const merge = require('webpack-merge')
 const parts = require('./webpack.parts')
 
@@ -29,8 +30,8 @@ const productionConfig = merge([
 const developmentConfig = merge([
   parts.devServer({
     // customize host/port in env
-    host: process.env.HOST,
-    port: process.env.PORT
+    host: process.env.WP_HOST, 
+    port: process.env.WP_PORT
   })
 ])
 
