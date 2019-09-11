@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
+import { BanModule } from './ban/ban.module';
 
 dotenv.config();
 @Module({
@@ -17,6 +18,7 @@ dotenv.config();
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true,
     }),
+    BanModule,
   ],
   controllers: [AppController],
   providers: [AppService],
