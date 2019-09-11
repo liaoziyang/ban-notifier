@@ -7,7 +7,7 @@ module.exports = {
   browser:        false,
   cache:          true,
   cacheDirectory: './test/tmp/jest_rs',
-  clearMocks: false,
+  clearMocks:     false,
   // coveragePathIgnorePatterns: [
   //   "/node_modules/"
   // ],

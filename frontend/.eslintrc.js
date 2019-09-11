@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['eslint:recommended'],
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
   plugins: [
     'react-hooks',
     'react'
@@ -8,6 +8,14 @@ module.exports = {
     'browser': true,
     'node': true,
     "jest": true
+  },
+  parserOptions: {
+    "ecmaVersion": 6,
+            "sourceType": "module",
+            "ecmaFeatures": {
+                "jsx": true,
+                "modules": true
+            }
   },
   rules:   {
     'arrow-body-style':            ['error', 'as-needed'],

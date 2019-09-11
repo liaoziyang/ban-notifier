@@ -9,7 +9,7 @@
     "build": "webpack --env production",
     "sort-package-json": "sort-package-json package.json",
     "start": "webpack-dev-server --env development",
-    "lint": "eslint --ingore-path .eslintignore .",
+    "lint": "eslint --ignore-path .eslintignore .",
     "lint:css": "stylelint src/**/*.js",
     "test": "jest",
     "test:watch": "jest --watchAll"
