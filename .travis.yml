@@ -1,12 +1,11 @@
-language: node_js
-node_js:
-  - node
-  - lts/*
-cache: yarn
-
 jobs:
   include:
     - stage: backend
+      language: node_js
+      node_js:
+        - node
+        - lts/*
+      cache: yarn
       before_install:
         - cd backend
       install:
@@ -16,6 +15,11 @@ jobs:
       script:
         - yarn test
     - stage: frontend
+      language: node_js
+      node_js:
+        - node
+        - lts/*
+      cache: yarn
       before_install:
         - cd frontend
       install:
