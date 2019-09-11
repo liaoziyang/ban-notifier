@@ -1,0 +1,11 @@
+{
+  "name": "ban-notifier",
+  "version": "1.0.0",
+  "description": "frontend react ban-notifier",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "sort-package-json": "^1.22.1"
+  }
+}
