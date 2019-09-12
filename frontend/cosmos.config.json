@@ -5,6 +5,8 @@
     "configPath": "./webpack.config.js",
     "hotReload": true
   },
+  "hostname": "aether.catalysm.net",
+  "port": 30002,
   "ui":{
     "responsivePreview": {
       "devices": [{

@@ -29,7 +29,7 @@ const productionConfig = merge([
 const developmentConfig = merge([
   parts.devServer({
     // customize host/port in env
-    host: process.env.WP_HOST,
+    host: process.env.HOSTNAME,
     port: process.env.WP_PORT
   })
 ])
