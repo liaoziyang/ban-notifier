@@ -16,7 +16,7 @@ it('router', () => {
   ReactDOM.unmountComponentAtNode(div)
 })
 
-describe('path routiong', () => {
+describe('path routing', () => {
   it('Invalid path, should redirect to 404', () => {
     const component = mount(
       <Router initialEntries={['/thispathdoesnotexist']}>
