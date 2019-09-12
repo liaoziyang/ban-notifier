@@ -9,10 +9,10 @@ const supportsHistory = 'pushState' in window.history
 export default function Routing(){
   return (
     <Router forceRefresh={!supportsHistory}>
-      <Switch>
-        <Route component={Home} exact path="/"/>
-        <Route component={NotFound}/>
-      </Switch>
+        <Switch>
+          <Route component={Home} exact path="/"/>
+          <Route component={NotFound}/>
+        </Switch>
     </Router>
   )
 }
