@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { suspense } from 'react'
+import useFetch from 'fetch-suspense'
 import styled from 'styled-components'
 const Container = styled.div`
   display: grid;
@@ -27,21 +28,27 @@ const Description = styled.p`
   margin-top: -15px;
 `
 
+// fetch
+
 export default function LiveFeed(){
+  const response = useFetch(`/tracked-account/live:${env.process.port}`, { method: 'GET' })
+  console.log(response)
   return (
-    <Container>
-      <Box>
-        <Title>24</Title>
-        <Description>banned today</Description>
-      </Box>
-      <Box>
-        <Title>33247</Title>
-        <Description>total bans</Description>
-      </Box>
-      <Box>
-        <Title>niek</Title>
-        <Description>latest ban</Description>
-      </Box>
-    </Container>
+    <suspense>
+      <Container>
+        <Box>
+          <Title>24</Title>
+          <Description>banned today</Description>
+        </Box>
+        <Box>
+          <Title>33247</Title>
+          <Description>total bans</Description>
+        </Box>
+        <Box>
+          <Title>niek</Title>
+          <Description>latest ban</Description>
+        </Box>
+      </Container>
+    </suspense>
   )
 }
