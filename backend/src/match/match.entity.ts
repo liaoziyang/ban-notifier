@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
-import TrackedAccount from '../trackedAccount/trackedAccount.entity';
+import TrackedAccount from '../tracked-account/trackedAccount.entity';
 
 @Entity()
 export default class Match {

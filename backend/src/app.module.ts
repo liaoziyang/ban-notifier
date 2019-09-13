@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { BanModule } from './ban/ban.module';
+import { TrackedAccountModule } from './tracked-account/tracked-account.module';
 
 dotenv.config();
 @Module({
@@ -19,6 +20,7 @@ dotenv.config();
       synchronize: true,
     }),
     BanModule,
+    TrackedAccountModule,
   ],
   controllers: [AppController],
   providers: [AppService],

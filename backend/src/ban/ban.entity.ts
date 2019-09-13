@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
-import TrackedAccount from '../trackedAccount/trackedAccount.entity';
+import TrackedAccount from '../tracked-account/trackedAccount.entity';
 
 @Entity()
 export default class Ban {
