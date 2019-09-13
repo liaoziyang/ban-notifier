@@ -7,22 +7,41 @@ const Container = styled.div`
   width: calc(60% - 150px);
   margin: 100px auto;
   background: ${(props) => props.theme.verticalGradient};
-  border-radius: 20px;
+  border-radius: 25px;
   grid-template-columns: repeat(3, 1fr);
   padding: 0 150px;
 `
 const Box = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+`
+const Title = styled.p`
+  color: white;
+  font-size: 3rem;
+  font-weight: 800;
+`
+const Description = styled.p`
+  color: white;
+  margin-top: -15px;
 `
 
 export default function LiveFeed(){
   return (
     <Container>
-      <Box>24</Box>
-      <Box>33247</Box>
-      <Box>niek</Box>
+      <Box>
+        <Title>24</Title>
+        <Description>banned today</Description>
+      </Box>
+      <Box>
+        <Title>33247</Title>
+        <Description>total bans</Description>
+      </Box>
+      <Box>
+        <Title>niek</Title>
+        <Description>latest ban</Description>
+      </Box>
     </Container>
   )
 }
