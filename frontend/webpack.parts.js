@@ -1,5 +1,6 @@
 // const CleanWebpackPlugin = require('clean-webpack-plugin')
 const webpack = require('webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -60,21 +61,21 @@ exports.generateFavicon = () => ({
   ]
 })
 
-exports.banner = () =>  ({
+exports.banner = () => ({
   plugins: [
     new webpack.BannerPlugin({
-      banner: 'This code is created by github.com/emielvanseveren and github.com/niekcandaele'
+      banner: 'contributed by: github.com/emielvanseveren, github.com/niekcandaele hash:[hash] name:[name]'
     })
   ]
 })
 
-//exports.cleanDist = () => ({
-//plugins: [
-// new CleanWebpackPlugin({
-//   dry: true,
-//  }),
-// ],
-//});
+exports.cleanDist = () => ({
+  plugins: [
+    new CleanWebpackPlugin({
+      dry: true
+    })
+  ]
+})
 
 exports.loadHtml = () => ({
   plugins: [

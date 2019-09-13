@@ -20,9 +20,10 @@ const commonConfig = merge([
 ])
 
 const productionConfig = merge([
-  //parts.cleanDist(),
+  parts.cleanDist(),
   parts.manifest(),
   parts.generateFavicon(),
+  parts.banner(),
   parts.minify(),
   parts.minimizeImages()
 ])
