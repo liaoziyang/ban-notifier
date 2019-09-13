@@ -1,7 +1,8 @@
 import React, { Suspense, Fragment } from 'react'
 import useFetch from 'fetch-suspense'
 import styled from 'styled-components'
-import { Subscription } from 'rxjs'
+import Loading from './Loading'
+
 const Container = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -40,7 +41,7 @@ const Description = styled.p`
 export default function LiveFeed(){
   return (
     <Container>
-      <Suspense fallback={<div>loading...</div>}>
+      <Suspense fallback={<Loading dark={false}/>}>
         <LiveFeedData/>
       </Suspense>
     </Container>
