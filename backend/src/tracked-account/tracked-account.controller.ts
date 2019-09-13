@@ -1,9 +1,11 @@
-import { Controller, Get, Param, ParseIntPipe, Post, Delete, Body, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Post, Delete, Body, UsePipes, ValidationPipe, UseGuards } from '@nestjs/common';
 import { TrackedAccountService } from './tracked-account.service';
 import TrackedAccount from './trackedAccount.entity';
 import { CreateTrackedAccountDto } from './dto/create-tracked-account.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('tracked-account')
+@UseGuards(AuthGuard())
 export class TrackedAccountController {
     constructor(private trackedAccountService: TrackedAccountService) { }
 

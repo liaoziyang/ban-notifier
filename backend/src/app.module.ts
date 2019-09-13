@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import { BanModule } from './ban/ban.module';
 import { TrackedAccountModule } from './tracked-account/tracked-account.module';
+import { AuthModule } from './auth/auth.module';
 
 dotenv.config();
 @Module({
@@ -21,6 +22,7 @@ dotenv.config();
     }),
     BanModule,
     TrackedAccountModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
