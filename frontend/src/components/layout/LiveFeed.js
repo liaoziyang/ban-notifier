@@ -1,6 +1,7 @@
-import React, { suspense } from 'react'
+import React, { Suspense, Fragment } from 'react'
 import useFetch from 'fetch-suspense'
 import styled from 'styled-components'
+import { Subscription } from 'rxjs'
 const Container = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -22,33 +23,49 @@ const Title = styled.p`
   color: white;
   font-size: 3rem;
   font-weight: 800;
+  &.name{
+    font-size: 2rem;
+  }
 `
 const Description = styled.p`
   color: white;
   margin-top: -15px;
+  &.name{
+    margin-top: -5px;
+  }
 `
 
 // fetch
 
 export default function LiveFeed(){
-  const response = useFetch(`/tracked-account/live:${env.process.port}`, { method: 'GET' })
-  console.log(response)
   return (
-    <suspense>
-      <Container>
-        <Box>
-          <Title>24</Title>
-          <Description>banned today</Description>
-        </Box>
-        <Box>
-          <Title>33247</Title>
-          <Description>total bans</Description>
-        </Box>
-        <Box>
-          <Title>niek</Title>
-          <Description>latest ban</Description>
-        </Box>
-      </Container>
-    </suspense>
+    <Container>
+      <Suspense fallback={<div>loading...</div>}>
+        <LiveFeedData/>
+      </Suspense>
+    </Container>
+  )
+}
+
+function LiveFeedData(){
+  function filterName(name){
+    return name.length > 14 ? name.substring(0,14) + '..' : name
+  }
+  const response = useFetch(`${__API__}/tracked-account/live`, { method: 'GET' })
+  return (
+    <Fragment>
+      <Box>
+        <Title>{response.today}</Title>
+        <Description>banned today</Description>
+      </Box>
+      <Box>
+        <Title>{response.month}</Title>
+        <Description>total bans</Description>
+      </Box>
+      <Box>
+        <Title className="name">{filterName(response.lastUser.name)}</Title>
+        <Description className="name">latest ban</Description>
+      </Box>
+    </Fragment>
   )
 }

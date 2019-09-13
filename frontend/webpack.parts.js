@@ -1,4 +1,5 @@
 // const CleanWebpackPlugin = require('clean-webpack-plugin')
+const webpack = require('webpack')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -40,6 +41,14 @@ exports.devServer = ({ host, port } = {}) => ({
   }
 })
 
+exports.globalVariables = () => ({
+  plugins: [
+    new webpack.DefinePlugin({
+      __API__: process.env.API
+    })
+  ]
+})
+
 exports.generateFavicon = () => ({
   plugins: [
     new FaviconsWebpackPlugin({
@@ -76,6 +85,7 @@ exports.cssExtract = () => ({
     })
   ]
 })
+
 
 exports.minify = () => ({
   optimization: {
