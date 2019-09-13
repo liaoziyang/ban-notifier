@@ -7,6 +7,16 @@ import { CreateTrackedAccountDto } from './dto/create-tracked-account.dto';
 export class TrackedAccountController {
     constructor(private trackedAccountService: TrackedAccountService) { }
 
+    @Get('/live')
+    getLiveData() {
+        return {
+            today: (Math.floor(Math.random() * Math.floor(100))).toString(),
+            month: (Math.floor(Math.random() * Math.floor(50000))).toString(),
+            lastUser: { name: "FilthyCheater", steamId: "76561198028175941" }
+
+        }
+    }
+
     @Get('/:id')
     getTrackedAccountById(@Param('id', ParseIntPipe) id: number): Promise<TrackedAccount> {
         return this.trackedAccountService.getTrackedAccountById(id);
@@ -22,4 +32,6 @@ export class TrackedAccountController {
     deleteTrackedAccountByid(@Param('id', ParseIntPipe) id: number) {
         return this.trackedAccountService.deleteTrackedAccount(id);
     }
+
+
 }
