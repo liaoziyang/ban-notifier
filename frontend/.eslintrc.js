@@ -4,6 +4,9 @@ module.exports = {
     'react-hooks',
     'react'
   ],
+  globals: {
+    '__API__': 'readonly'
+  },
   env: {
     'browser': true,
     'node': true,

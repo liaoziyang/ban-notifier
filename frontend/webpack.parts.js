@@ -52,10 +52,18 @@ exports.globalVariables = () => ({
 exports.generateFavicon = () => ({
   plugins: [
     new FaviconsWebpackPlugin({
-      logo:           './public/icon.png',
+      logo:           './public/icon/icon.png',
       statsFilename:  'faviconStats-[hash].json',
       inject:         true,
       title:          'Banter'
+    })
+  ]
+})
+
+exports.banner = () =>  ({
+  plugins: [
+    new webpack.BannerPlugin({
+      banner: 'This code is created by github.com/emielvanseveren and github.com/niekcandaele'
     })
   ]
 })
