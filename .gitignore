@@ -44,7 +44,7 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 .editorconfig
 
 # misc 
-.env
+*.env
 .env.test
 .env.local
 .DS_Store

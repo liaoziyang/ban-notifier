@@ -6,7 +6,9 @@ import * as dotenv from 'dotenv';
 import { BanModule } from './ban/ban.module';
 import { TrackedAccountModule } from './tracked-account/tracked-account.module';
 import { AuthModule } from './auth/auth.module';
+import { ConfigService } from './config/config.service';
 
+// Does not happen in config service because it's a PITA to parse the values from the service inside module initialization
 dotenv.config();
 @Module({
   imports: [
@@ -25,6 +27,6 @@ dotenv.config();
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ConfigService],
 })
 export class AppModule { }

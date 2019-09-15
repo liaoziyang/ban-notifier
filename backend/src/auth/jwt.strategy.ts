@@ -6,6 +6,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from '../user/user.repository';
 import User from '../user/user.entity';
 import * as dotenv from 'dotenv';
+import { ConfigService } from '../config/config.service';
 
 dotenv.config();
 
@@ -13,11 +14,12 @@ dotenv.config();
 export class JwtStrategy extends PassportStrategy(Strategy) {
     constructor(
         @InjectRepository(UserRepository)
-        private userReposity: UserRepository
+        private userReposity: UserRepository,
+        config: ConfigService
     ) {
         super({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-            secretOrKey: process.env.jwtSecret,
+            secretOrKey: config.get('JWT_SECRET'),
         })
     }
 
