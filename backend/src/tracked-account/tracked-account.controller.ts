@@ -14,9 +14,9 @@ export class TrackedAccountController {
         return {
             today: (Math.floor(Math.random() * Math.floor(100))).toString(),
             month: (Math.floor(Math.random() * Math.floor(50000))).toString(),
-            lastUser: { name: "FilthyCheater", steamId: "76561198028175941" }
+            lastUser: { name: 'FilthyCheater', steamId: '76561198028175941' },
 
-        }
+        };
     }
 
     @Get('/:id')
@@ -34,6 +34,5 @@ export class TrackedAccountController {
     deleteTrackedAccountByid(@Param('id', ParseIntPipe) id: number) {
         return this.trackedAccountService.deleteTrackedAccount(id);
     }
-
 
 }

@@ -15,7 +15,7 @@ export class TrackedAccountService {
         const found = await this.trackedAccountRepository.findOne(id);
 
         if (!found) {
-            throw new NotFoundException(`TrackedAccount with ID "${id}" not found`)
+            throw new NotFoundException(`TrackedAccount with ID "${id}" not found`);
         }
 
         return found;

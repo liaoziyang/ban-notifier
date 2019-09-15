@@ -15,7 +15,7 @@ dotenv.config();
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.PG_HOST,
-      port: parseInt(process.env.PG_PORT),
+      port: parseInt(process.env.PG_PORT, 10),
       username: process.env.PG_USER,
       password: process.env.PG_PW,
       database: process.env.PG_DB,

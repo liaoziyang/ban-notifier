@@ -10,6 +10,6 @@ import { AuthModule } from '../auth/auth.module';
   imports: [TypeOrmModule.forFeature([TrackedAccount, TrackedAccountRepository]),
     AuthModule],
   controllers: [TrackedAccountController],
-  providers: [TrackedAccountService]
+  providers: [TrackedAccountService],
 })
 export class TrackedAccountModule { }

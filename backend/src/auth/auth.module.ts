@@ -19,7 +19,7 @@ dotenv.config();
       secret: process.env.JWT_SECRET,
       signOptions: {
         expiresIn: 3600,
-      }
+      },
     }),
     TypeOrmModule.forFeature([UserRepository]),
     ConfigModule,
@@ -29,7 +29,7 @@ dotenv.config();
     JwtStrategy],
   exports: [
     JwtStrategy,
-    PassportModule
-  ]
+    PassportModule,
+  ],
 })
 export class AuthModule { }

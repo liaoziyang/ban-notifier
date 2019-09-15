@@ -15,5 +15,5 @@ export default class TrackedAccount extends BaseEntity {
 
     @ManyToMany(type => User)
     @JoinTable()
-    trackedBy: User[]
+    trackedBy: User[];
 }

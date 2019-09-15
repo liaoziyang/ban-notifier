@@ -13,7 +13,6 @@ export class AuthService {
         private jwtService: JwtService,
     ) { }
 
-
     async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
         return this.userRepository.signUp(authCredentialsDto);
     }
