@@ -1,4 +1,6 @@
 // const CleanWebpackPlugin = require('clean-webpack-plugin')
+const webpack = require('webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -40,10 +42,18 @@ exports.devServer = ({ host, port } = {}) => ({
   }
 })
 
+exports.globalVariables = () => ({
+  plugins: [
+    new webpack.DefinePlugin({
+      __API__: process.env.API
+    })
+  ]
+})
+
 exports.generateFavicon = () => ({
   plugins: [
     new FaviconsWebpackPlugin({
-      logo:           './public/icon.png',
+      logo:           './public/icon/icon.png',
       statsFilename:  'faviconStats-[hash].json',
       inject:         true,
       title:          'Banter'
@@ -51,13 +61,21 @@ exports.generateFavicon = () => ({
   ]
 })
 
-//exports.cleanDist = () => ({
-//plugins: [
-// new CleanWebpackPlugin({
-//   dry: true,
-//  }),
-// ],
-//});
+exports.banner = () => ({
+  plugins: [
+    new webpack.BannerPlugin({
+      banner: 'contributed by: github.com/emielvanseveren, github.com/niekcandaele hash:[hash] name:[name]'
+    })
+  ]
+})
+
+exports.cleanDist = () => ({
+  plugins: [
+    new CleanWebpackPlugin({
+      dry: true
+    })
+  ]
+})
 
 exports.loadHtml = () => ({
   plugins: [
@@ -76,6 +94,7 @@ exports.cssExtract = () => ({
     })
   ]
 })
+
 
 exports.minify = () => ({
   optimization: {

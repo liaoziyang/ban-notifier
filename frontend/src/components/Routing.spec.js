@@ -16,6 +16,7 @@ it('router', () => {
   ReactDOM.unmountComponentAtNode(div)
 })
 
+
 describe('path routiong', () => {
   it('Invalid path, should redirect to 404', () => {
     const component = mount(
