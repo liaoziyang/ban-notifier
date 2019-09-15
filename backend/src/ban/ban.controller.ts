@@ -4,6 +4,6 @@ import { Controller, Get } from '@nestjs/common';
 export class BanController {
     @Get()
     getAllBans() {
-        return {}
+        return {};
     }
 }

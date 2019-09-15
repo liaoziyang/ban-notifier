@@ -1,9 +1,11 @@
-import { Controller, Get, Param, ParseIntPipe, Post, Delete, Body, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Post, Delete, Body, UsePipes, ValidationPipe, UseGuards } from '@nestjs/common';
 import { TrackedAccountService } from './tracked-account.service';
 import TrackedAccount from './trackedAccount.entity';
 import { CreateTrackedAccountDto } from './dto/create-tracked-account.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('tracked-account')
+@UseGuards(AuthGuard())
 export class TrackedAccountController {
     constructor(private trackedAccountService: TrackedAccountService) { }
 
@@ -12,9 +14,9 @@ export class TrackedAccountController {
         return {
             today: (Math.floor(Math.random() * Math.floor(100))).toString(),
             month: (Math.floor(Math.random() * Math.floor(50000))).toString(),
-            lastUser: { name: "FilthyCheater", steamId: "76561198028175941" }
+            lastUser: { name: 'FilthyCheater', steamId: '76561198028175941' },
 
-        }
+        };
     }
 
     @Get('/:id')
@@ -32,6 +34,5 @@ export class TrackedAccountController {
     deleteTrackedAccountByid(@Param('id', ParseIntPipe) id: number) {
         return this.trackedAccountService.deleteTrackedAccount(id);
     }
-
 
 }

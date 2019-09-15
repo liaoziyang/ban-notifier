@@ -14,5 +14,5 @@ export default class Match {
 
     @ManyToMany(type => TrackedAccount)
     @JoinTable()
-    players: TrackedAccount[]
+    players: TrackedAccount[];
 }

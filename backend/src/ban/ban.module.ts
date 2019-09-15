@@ -5,4 +5,4 @@ import { BanController } from './ban.controller';
     providers: [],
     controllers: [BanController],
 })
-export class BanModule { };
+export class BanModule { }
