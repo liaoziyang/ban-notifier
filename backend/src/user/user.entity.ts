@@ -23,6 +23,12 @@ export default class User extends BaseEntity {
     @Column('text', { nullable: true })
     discordId: string;
 
+    @Column('text', { nullable: true })
+    faceitId: string;
+
+    @Column('text', { nullable: true })
+    faceitName: string;
+
     @ManyToMany(type => Match)
     playedInMatch: Match[];
 
