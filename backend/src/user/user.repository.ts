@@ -1,11 +1,12 @@
 import { Repository, EntityRepository } from 'typeorm';
 import User from './user.entity';
 import { AuthCredentialsDto } from 'src/auth/dto/auth-credentials.dto';
-import { ConflictException, InternalServerErrorException } from '@nestjs/common';
+import { ConflictException, InternalServerErrorException, Logger } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
+    private logger = new Logger('UserRepository');
     async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
         const { username, password } = authCredentialsDto;
 
@@ -16,10 +17,12 @@ export class UserRepository extends Repository<User> {
 
         try {
             await user.save();
+            this.logger.debug(`New user signed up with username ${username}`);
         } catch (error) {
             if (error.code === '23505') { // Duplicate username
                 throw new ConflictException('Username already exists');
             } else {
+                this.logger.error(`Failed to signup user ${user.username}`, error.stack);
                 throw new InternalServerErrorException();
             }
         }
