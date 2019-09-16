@@ -45,7 +45,7 @@ exports.devServer = ({ host, port } = {}) => ({
 exports.globalVariables = () => ({
   plugins: [
     new webpack.DefinePlugin({
-      __API__: process.env.API
+      __API__: JSON.stringify(process.env.API)
     })
   ]
 })
