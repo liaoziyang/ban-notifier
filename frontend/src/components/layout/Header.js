@@ -7,6 +7,7 @@ import blob from '../../assets/blob.svg'
 
 const Container = styled.div`
   display: flex;
+  min-height: 100px;
   position: relative;
   align-items: center;
   flex-direction: row;
@@ -23,7 +24,7 @@ const Container = styled.div`
     background-repeat: no-repeat;
   }
 `
-const IconContainer = styled.div`
+const IconContainer = styled(Link)`
   width: 50%;
   height: auto;
   display: flex;
@@ -55,13 +56,18 @@ const StyledLink = styled(Link)`
   color: ${(props) => props.theme.text};
   font-weight: 500;
   margin: 0 50px;
+  transition: .2s transform ease-in-out;
+  font-size: 1.125rem;
+  &:hover{
+    transform: translateY(-4px);
+  }
 `
 
 // TODO: check with localstorage if user already created a profile?
 export default function Header(){
   return (
     <Container>
-      <IconContainer>
+      <IconContainer to="/">
         <Icon alt="banter-icon" src={icon}/>
         <p>Banter</p>
       </IconContainer>
@@ -70,7 +76,7 @@ export default function Header(){
           <StyledLink to="/csgo" >csgo</StyledLink>
           <StyledLink to="/faceit">faceit</StyledLink>
         </LinkContainer>
-       <Button colored={false} text="sign up"/>
+        <Button colored={false} text="sign up"/>
       </NavBar>
     </Container>
   )
