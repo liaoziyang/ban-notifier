@@ -8,7 +8,7 @@ const Container = styled.div`
 export default function Header(){
   return (
     <Container>
-      this is a header
+      
     </Container>
   )
 }
