@@ -8,22 +8,27 @@ const Container = styled.button`
   color: ${(props) => props.colored ? 'white' : props.theme.red};
   text-transform: uppercase;
   font-weight: 800;
-  letter-spacing: 0.5px;
   box-shadow: 2px 3px 15px 0 rgba(0,0,0,0.47);
+  transition: .2s transform ease-in-out;
+  &:hover{
+    transform: ${(props) => props.hoverDirection === 'vertical' ? 'translateY(-6px)' : 'translateX(-6px)'};
+  }
 `
 
-export default function Button({ text, colored }){
+export default function Button({ text, colored, hoverDirection }){
   return (
-    <Container colored={colored}>
+    <Container colored={colored} hoverDirection={hoverDirection}>
       { text }
     </Container>
   )
 }
 
 Button.propTypes = {
-  colored: PropTypes.bool,
-  text:    PropTypes.string.isRequired
+  colored:        PropTypes.bool,
+  hoverDirection: PropTypes.oneOf(['horizontal', 'vertical']),
+  text:           PropTypes.string.isRequired
 }
 Button.defaultProps = {
-  colored: true
+  colored:        true,
+  hoverDirection: 'vertical'
 }
