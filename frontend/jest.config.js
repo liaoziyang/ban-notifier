@@ -8,8 +8,8 @@ module.exports = {
   cache:          true,
   cacheDirectory: './test/tmp/jest_rs',
   clearMocks:     false,
-  globals:        {
-    '__API__': 'http://aether.catalysm.net:30003'
+  globals: {
+    '__API__': process.env.API
   },
   // coveragePathIgnorePatterns: [
   //   "/node_modules/"
