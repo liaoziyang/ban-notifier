@@ -2,8 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import Button from './Button'
-
-import icon from '../../assets/icon/icon.png'
+import icon from '../../assets/icon/icon.svg'
 
 const Container = styled.div`
   background-color: ${(props) => props.theme.red};

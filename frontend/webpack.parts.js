@@ -74,7 +74,8 @@ exports.banner = () => ({
 exports.cleanDist = () => ({
   plugins: [
     new CleanWebpackPlugin({
-      dry: true
+      dry:     true,
+      verbose: false
     })
   ]
 })
@@ -175,21 +176,21 @@ exports.loaders = () => ({
         ]
       },
       {
-        // webpack will if the file is smaller than 25000 inline the image, a source less to load with a call.
-        test: /\.(jpg|png|svg|webp)$/,
-        use:  {
-          loader:   'url-loader',
-          options:  {
-            limit:  25000
-          }
-        }
-      },
-      {
         test:    /\.(png|jp?g|gif)$/i,
         loader:  'file-loader',
         options: {
-          name:        '[path][name].[ext]',
-          outputPath: 'images'
+          name:        'images/[name].[ext]',
+          outputPath: 'assets'
+        }
+      },
+      {
+        // webpack will if the file is smaller than 25000 inline the image, a source less to load with a call.
+        test: /\.(jp?g|png|svg|webp)$/,
+        use:  {
+          loader:   'url-loader',
+          options:  {
+            limit:  8192
+          }
         }
       }
     ]
