@@ -1,20 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Link, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Button from './Button'
+
+import icon from '../../assets/icon/icon.png'
 
 const Container = styled.div`
   background-color: ${(props) => props.theme.red};
   padding: 50px 25px;
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: row;
 `
 const IconContainer = styled.div`
-  background-color: black;
   max-width: 300px;
   width: auto;
+  height: auto;
 `
 const Icon = styled.img`
   width: 50px;
@@ -32,7 +33,7 @@ export default function Header(){
   return (
     <Container>
       <IconContainer>
-        <Icon alt="banter-icon" src="/public/icon/icon.png"/>
+        <Icon alt="banter-icon" src={icon}/>
       </IconContainer>
       <NavBar>
         <StyledLink to="/csgo" >csgo</StyledLink>

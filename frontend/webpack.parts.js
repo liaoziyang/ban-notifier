@@ -53,10 +53,12 @@ exports.globalVariables = () => ({
 exports.generateFavicon = () => ({
   plugins: [
     new FaviconsWebpackPlugin({
-      logo:           './public/icon/icon.png',
+      logo:           './src/assets/icon/icon.png',
       statsFilename:  'faviconStats-[hash].json',
       inject:         true,
-      title:          'Banter'
+      title:          'Banter',
+      caches:         true,
+      outputPath:     '/assets/icons/'
     })
   ]
 })
@@ -94,7 +96,6 @@ exports.cssExtract = () => ({
     })
   ]
 })
-
 
 exports.minify = () => ({
   optimization: {
@@ -181,6 +182,14 @@ exports.loaders = () => ({
           options:  {
             limit:  25000
           }
+        }
+      },
+      {
+        test:    /\.(png|jp?g|gif)$/i,
+        loader:  'file-loader',
+        options: {
+          name:        '[path][name].[ext]',
+          outputPath: 'images'
         }
       }
     ]
