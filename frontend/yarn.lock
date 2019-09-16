@@ -676,14 +676,6 @@
     "@babel/plugin-transform-react-jsx-self" "^7.0.0"
     "@babel/plugin-transform-react-jsx-source" "^7.0.0"
 
-"@babel/runtime-corejs2@^7.3.1":
-  version "7.6.0"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.6.0.tgz#6fcd37c2580070817d62f219db97f67e26f50f9c"
-  integrity sha512-zbPQzlbyJab2xCYb6VaESn8Tk/XiVpQJU7WvIKiQCwlFyc2NSCzKjqtBXCvpZBbiTOHCx10s2656REVnySwb+A==
-  dependencies:
-    core-js "^2.6.5"
-    regenerator-runtime "^0.13.2"
-
 "@babel/runtime@^7.1.2", "@babel/runtime@^7.4.0", "@babel/runtime@^7.4.5", "@babel/runtime@^7.5.1":
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.6.0.tgz#4fc1d642a9fd0299754e8b5de62c631cf5568205"
@@ -7586,11 +7578,6 @@ lodash.isequal@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
   integrity sha1-QVxEePK8wwEgwizhDtMib30+GOA=
 
-lodash.isplainobject@^4.0.6:
-  version "4.0.6"
-  resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"
-  integrity sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=
-
 lodash.istypedarray@^3.0.0:
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/lodash.istypedarray/-/lodash.istypedarray-3.0.6.tgz#c9a477498607501d8e8494d283b87c39281cef62"
@@ -10046,15 +10033,6 @@ react-cosmos-playground2@^5.0.0-beta.0:
   resolved "https://registry.yarnpkg.com/react-cosmos-playground2/-/react-cosmos-playground2-5.0.0-beta.0.tgz#547d151aa1a6a9b092b3631028c21002e3051621"
   integrity sha512-RUo0QK2jm2yph+ywOfV8J9dLM8/HSRMVoH1yQcD/VH/ZAfqO0pzfHHMG8jMyFxzH/ZVvgcJcqOeDq81Bxmz2OQ==
 
-react-cosmos-router-proxy@^4.8.2:
-  version "4.8.2"
-  resolved "https://registry.yarnpkg.com/react-cosmos-router-proxy/-/react-cosmos-router-proxy-4.8.2.tgz#9f29f70608260650eedf2685f6beee8761498162"
-  integrity sha512-EFJ6+sBXUkB7dTEd9pK3aT81S0mxsfQTSUACA7VuPXTOtLXbiAhKzICRwzMmYLfjFXprXEJhiSQ6beRWGTwyTQ==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    react-cosmos-shared "^4.8.2"
-    url "^0.11.0"
-
 react-cosmos-shared2@^5.0.0-beta.0:
   version "5.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/react-cosmos-shared2/-/react-cosmos-shared2-5.0.0-beta.0.tgz#48debbb86912895f24b4063451c29ba8808507de"
@@ -10064,17 +10042,6 @@ react-cosmos-shared2@^5.0.0-beta.0:
     query-string "^6.8.3"
     react-element-to-jsx-string "^14.0.3"
     react-is "^16.9.0"
-
-react-cosmos-shared@^4.8.2:
-  version "4.8.2"
-  resolved "https://registry.yarnpkg.com/react-cosmos-shared/-/react-cosmos-shared-4.8.2.tgz#5fdd8749303dd7ec7582bae6710c8500354f468a"
-  integrity sha512-9Yh+vFIDWmbuv891LaYRzN9jBISmVl8A0sQuSgQTbpeL21c77iwZIubpXgz2KOD+Qvhvn4gEzrOjMf7lent1Zw==
-  dependencies:
-    "@babel/runtime-corejs2" "^7.3.1"
-    lodash.isplainobject "^4.0.6"
-    prop-types "^15.6.2"
-    resolve-from "^4.0.0"
-    slash "^2.0.0"
 
 react-cosmos-stateful-proxy@^2.0.0:
   version "2.0.0"

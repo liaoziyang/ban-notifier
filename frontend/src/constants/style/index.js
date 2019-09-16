@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { createGlobalStyle } from 'styled-components'
 
 const Style = createGlobalStyle`
@@ -20,19 +20,23 @@ const Style = createGlobalStyle`
   p{
     font-size: 1rem;
   }
-  button, button:active, button:focus{
-    border: 0;
-    outline: 0;
-    outline: none;
+  button, button:active, button:focus button::-moz-focus-inner,
+  input[type="reset"]::-moz-focus-inner,
+  input[type="button"]::-moz-focus-inner,
+  input[type="submit"]::-moz-focus-inner {
+  border: none;
+  outline: none;
+  border-style: none;
   }
 `
 
 // this is needed for cosmos as the wrapper proxy prefers a div
-export function CosmosGlobalStyle(){
+export function CosmosGlobalStyle({ children }){
   return (
-    <div>
+    <Fragment>
       <Style/>
-    </div>
+      { children }
+    </Fragment>
   )
 }
 

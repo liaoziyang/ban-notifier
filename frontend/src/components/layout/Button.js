@@ -9,6 +9,7 @@ const Container = styled.button`
   text-transform: uppercase;
   font-weight: 800;
   letter-spacing: 0.5px;
+  box-shadow: 2px 3px 15px 0 rgba(0,0,0,0.47);
 `
 
 export default function Button({ text, colored }){
