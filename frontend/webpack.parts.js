@@ -45,7 +45,7 @@ exports.devServer = ({ host, port } = {}) => ({
 exports.globalVariables = () => ({
   plugins: [
     new webpack.DefinePlugin({
-      __API__: JSON.stringify(process.env.API),
+      __API__: JSON.stringify(process.env.API)
     })
   ]
 })
@@ -53,10 +53,12 @@ exports.globalVariables = () => ({
 exports.generateFavicon = () => ({
   plugins: [
     new FaviconsWebpackPlugin({
-      logo:           './public/icon/icon.png',
+      logo:           './src/assets/icon/icon.png',
       statsFilename:  'faviconStats-[hash].json',
       inject:         true,
-      title:          'Banter'
+      title:          'Banter',
+      caches:         true,
+      outputPath:     '/assets/icons/'
     })
   ]
 })
@@ -72,7 +74,8 @@ exports.banner = () => ({
 exports.cleanDist = () => ({
   plugins: [
     new CleanWebpackPlugin({
-      dry: true
+      dry:     true,
+      verbose: false
     })
   ]
 })
@@ -80,7 +83,7 @@ exports.cleanDist = () => ({
 exports.loadHtml = () => ({
   plugins: [
     new HtmlWebPackPlugin({
-      template: './public/index.html',
+      template: './src/index.html',
       filename: 'index.html'
     })
   ]
@@ -94,7 +97,6 @@ exports.cssExtract = () => ({
     })
   ]
 })
-
 
 exports.minify = () => ({
   optimization: {
@@ -174,12 +176,18 @@ exports.loaders = () => ({
         ]
       },
       {
-        // webpack will if the file is smaller than 25000 inline the image, a source less to load with a call.
-        test: /\.(jpg|png|svg|webp)$/,
+        test:    /\.(png|jp?g|gif)$/i,
+        loader:  'file-loader',
+        options: {
+          name:        '[name].[ext]'
+        }
+      },
+      {
+        test: /\.(jp?g|png|svg|webp)$/,
         use:  {
           loader:   'url-loader',
           options:  {
-            limit:  25000
+            limit:  8192
           }
         }
       }
