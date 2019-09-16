@@ -83,7 +83,7 @@ exports.cleanDist = () => ({
 exports.loadHtml = () => ({
   plugins: [
     new HtmlWebPackPlugin({
-      template: './public/index.html',
+      template: './src/index.html',
       filename: 'index.html'
     })
   ]
@@ -179,12 +179,10 @@ exports.loaders = () => ({
         test:    /\.(png|jp?g|gif)$/i,
         loader:  'file-loader',
         options: {
-          name:        'images/[name].[ext]',
-          outputPath: 'assets'
+          name:        '[name].[ext]'
         }
       },
       {
-        // webpack will if the file is smaller than 25000 inline the image, a source less to load with a call.
         test: /\.(jp?g|png|svg|webp)$/,
         use:  {
           loader:   'url-loader',

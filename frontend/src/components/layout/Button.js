@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 const Container = styled.button`
   background-color: ${(props) => props.colored ? props.theme.red : 'white'};
-  padding: 8px 40px;
+  padding: 10px 60px;
   color: ${(props) => props.colored ? 'white' : props.theme.red};
   text-transform: uppercase;
   font-weight: 800;

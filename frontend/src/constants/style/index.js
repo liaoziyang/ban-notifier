@@ -19,6 +19,7 @@ const Style = createGlobalStyle`
   }
   p{
     font-size: 1rem;
+    color: #707070;
   }
   button, button:active, button:focus button::-moz-focus-inner,
   input[type="reset"]::-moz-focus-inner,
