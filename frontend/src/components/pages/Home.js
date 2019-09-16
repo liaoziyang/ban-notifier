@@ -1,7 +1,5 @@
-
-import React from 'react'
-import Header from '../layout/Header'
 import React, { Suspense } from 'react'
+import Header from '../layout/Header'
 import Loading from '../layout/Loading'
 import LiveFeed from '../layout/LiveFeed'
 
