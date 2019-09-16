@@ -13,7 +13,7 @@
     "lint:css": "stylelint src/**/*.js",
     "sort-package-json": "sort-package-json package.json",
     "start": "webpack-dev-server --env development",
-    "test": "jest",
+    "test": "jest --config",
     "test:watch": "jest --watchAll"
   },
   "dependencies": {
@@ -24,6 +24,7 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router-dom": "^5.0.1",
+    "socket.io-client": "^2.2.0",
     "sort-package-json": "^1.22.1",
     "styled-components": "^4.3.2"
   },

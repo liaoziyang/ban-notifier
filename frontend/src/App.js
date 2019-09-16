@@ -10,4 +10,5 @@ export default function App(){
       <Style/>
       <Routing/>
     </Fragment>
+  )
 }

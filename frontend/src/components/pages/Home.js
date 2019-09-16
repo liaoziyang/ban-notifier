@@ -1,9 +1,9 @@
-import React from 'react'
-
+import React, { Suspense } from 'react'
+import Loading from '../layout/Loading'
 import LiveFeed from '../layout/LiveFeed'
 
 export default function Home(){
   return (
-    <div><LiveFeed/></div>
+    <Suspense fallback={<Loading dark={false}/>}><LiveFeed/></Suspense>
   )
 }
