@@ -1,9 +1,19 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Link } from 'react-router-dom'
 import Button from './Button'
 import icon from '../../assets/icon/icon.svg'
-import blob from '../../assets/blob.svg'
+
+const moveBlob = keyframes`
+  0% {
+    top: -100px;
+    right: -75px
+  }
+  100% {
+    top: -125px;
+    right: -95px;
+  }
+`
 
 const Container = styled.div`
   display: flex;
@@ -22,6 +32,7 @@ const Container = styled.div`
     height: 500px;
     background-image: url('./blob.svg');
     background-repeat: no-repeat;
+    animation: 2s ${moveBlob} ease-in-out infinite alternate;
   }
 `
 const IconContainer = styled(Link)`
