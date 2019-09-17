@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: auto-pull-request
-    - uses: actions/auto-pull-request
+      uses: actions/auto-pull-request
       with:
         secrets: ${{ secrets.GITHUB_TOKEN }}
     - name: auto-label
-    - uses: actions/auto-label
+      uses: actions/auto-label
       with:
         secrets: ${{ secrets.GITHUB_TOKEN }}
