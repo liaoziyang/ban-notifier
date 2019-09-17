@@ -33,7 +33,13 @@ jobs:
     - name: yarn audit
       run: |
         cd frontend
-        yarn audit        
+        yarn audit       
+    - uses: codecov/codecov-action@v1.0.2
+      with:
+        token: ${{secrets.CODECOV_TOKEN}} #required
+        file: frontend/coverage/clover.xml #optional
+        flags: frontend #optional
+        name: codecov-umbrella #optional 
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:

@@ -25,7 +25,7 @@ jobs:
     - name: yarn test
       run: |
         cd backend
-        yarn test
+        yarn test --coverage
     - name: yarn lint
       run: |
         cd backend
@@ -34,6 +34,12 @@ jobs:
       run: |
         cd backend
         yarn audit
+    - uses: codecov/codecov-action@v1.0.2
+      with:
+        token: ${{secrets.CODECOV_TOKEN}} #required
+        file: backend/coverage/clover.xml #optional
+        flags: backend #optional
+        name: codecov-umbrella #optional
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
