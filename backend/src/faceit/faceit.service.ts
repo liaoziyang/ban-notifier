@@ -5,18 +5,18 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from '../user/user.repository';
 import { ConfigService } from '../config/config.service';
 
-@Processor({ name: 'faceit' })
 @Injectable()
+@Processor({ name: 'faceit' })
 export class FaceitService {
     private logger = new Logger('FaceitService');
     private faceitApiKey: string;
     constructor(
-        @InjectQueue('faceit')
-        readonly queue: Queue,
         @InjectRepository(UserRepository)
         private userRepository: UserRepository,
+        @InjectQueue('faceit')
+        readonly queue: Queue,
         private readonly httpService: HttpService,
-        config: ConfigService
+        private readonly config: ConfigService
     ) {
         // Add repeated job for getting user matches
         queue.add({}, { repeat: { cron: '* * * * *' } })

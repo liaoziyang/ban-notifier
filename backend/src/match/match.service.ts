@@ -12,5 +12,6 @@ export class MatchService {
         private matchRepository: MatchRepository,
         @InjectQueue('matches')
         readonly matchesQueue: Queue
-    ) { }
+    ) {
+     }
 }

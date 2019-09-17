@@ -8,7 +8,6 @@ import { TrackedAccountModule } from './tracked-account/tracked-account.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigService } from './config/config.service';
 import { FaceitModule } from './faceit/faceit.module';
-import { MatchService } from './match/match.service';
 import { MatchModule } from './match/match.module';
 
 // Does not happen in config service because it's a PITA to parse the values from the service inside module initialization

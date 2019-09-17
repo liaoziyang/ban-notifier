@@ -7,10 +7,10 @@ import { ConfigModule } from '../config/config.module';
 
 @Module({
   imports: [
-    BullModule.register({
-      name: 'faceit'
-    }),
     TypeOrmModule.forFeature([UserRepository]),
+    BullModule.register({
+      name: 'faceit',
+    }),
     HttpModule,
     ConfigModule
   ],
