@@ -1,0 +1,10 @@
+{
+    "rules": {
+      "frontend": ["frontend/*"],
+      "react-component": ["frontend/src/components/layout/*"],
+      "backend": ["backend/*"],
+      "API": ["backend/**/*.controller.ts"],
+      "authentication": ["backend/src/auth/*", "frontend/src/components/auth/*"],
+      "ci": ".github/workflows/*"
+    }
+  }
