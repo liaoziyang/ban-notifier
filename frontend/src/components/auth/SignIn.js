@@ -31,10 +31,10 @@ export default function SignIn({ username }){
       }
       render={({ errors, touched }) => (
         <Form>
-          <StyledLabel htmlFor="username">username</StyledLabel>
+          <StyledLabel htmlFor="username">Username</StyledLabel>
           <StyledField name="username" type="text"/>
           { errors.username }
-          <StyledLabel hmtlFor="password">password</StyledLabel>
+          <StyledLabel hmtlFor="password">Password</StyledLabel>
           <StyledField name="password" type="password"/>
           { errors.username }
           <Button text="sign in"/>

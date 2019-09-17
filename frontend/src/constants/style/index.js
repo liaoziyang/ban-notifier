@@ -2,6 +2,11 @@ import React, { Fragment } from 'react'
 import { createGlobalStyle } from 'styled-components'
 
 const Style = createGlobalStyle`
+
+  *::selection{
+    background-color: ${(props) => props.theme.red};
+    color: white;
+  }
   body{
     padding: 0;
     margin: 0;
