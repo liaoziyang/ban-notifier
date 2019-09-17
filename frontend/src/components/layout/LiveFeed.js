@@ -46,7 +46,6 @@ export default function LiveFeed(){
   )
 }
 
-
 function LiveFeedData(){
   const socket = io(`${__API__}`)
   const [ response, setResponse ] = useState({ today: 5, month: 5, lastUser: { name: 'franky', steamId: '32432'}})

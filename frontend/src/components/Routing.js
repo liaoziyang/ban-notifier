@@ -2,8 +2,8 @@ import React from 'react'
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom'
 
 import Home from './pages/Home'
-import SignIn from './pages/SignIn'
-import SignUp from './pages/SignUp'
+import SignInPage from './pages/SignInPage'
+import SignUpPage from './pages/SignUpPage'
 import NotFound from './pages/NotFound'
 
 // checks if history exists
@@ -13,8 +13,8 @@ export default function Routing(){
     <Router forceRefresh={!supportsHistory}>
       <Switch>
         <Route component={Home} exact path="/"/>
-        <Route component={SignIn} path="signin"/>
-        <Route component={SignUp} path="signup"/>
+        <Route component={SignInPage} path="signin"/>
+        <Route component={SignUpPage} path="signup"/>
         <Route component={NotFound}/>
       </Switch>
     </Router>
