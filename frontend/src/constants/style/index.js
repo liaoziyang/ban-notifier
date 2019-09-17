@@ -7,7 +7,7 @@ const Style = createGlobalStyle`
     margin: 0;
     font-family: 'Poppins', sans-serif;
   }
-  h1,h2,h3,h4,h5,h6,p,a,button{
+  h1,h2,h3,h4,h5,h6,p,a,button,label,input{
     margin: 0;
     padding: 0;
     outline: 0;
@@ -20,6 +20,9 @@ const Style = createGlobalStyle`
   p{
     font-size: 1rem;
     color: #707070;
+  }
+  input{
+     display: block;
   }
   button, button:active, button:focus button::-moz-focus-inner,
   input[type="reset"]::-moz-focus-inner,

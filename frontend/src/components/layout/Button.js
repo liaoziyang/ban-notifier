@@ -10,6 +10,7 @@ const Container = styled.button`
   font-weight: 800;
   box-shadow: 2px 3px 15px 0 rgba(0,0,0,0.47);
   transition: .2s transform ease-in-out;
+  cursor: pointer;
   &:hover{
     transform: ${(props) => props.hoverDirection === 'vertical' ? 'translateY(-6px)' : 'translateX(-6px)'};
   }

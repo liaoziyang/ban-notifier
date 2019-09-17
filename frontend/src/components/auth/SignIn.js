@@ -1,12 +1,26 @@
 import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Form, Field } from 'formik'
 import Button from '../layout/Button'
-import TextInput from '../layout/TextInput'
+
+const StyledLabel = styled.label`
+  color: ${(props) => props.theme.gray};
+  font-size: 0.825rem;
+  margin-left: 2px;
+`
+const StyledField = styled(Field)`
+  padding: 10px 15px;
+  border: 1px solid ${(props) => props.theme.gray};
+  margin-bottom: 35px;
+  border-radius: 5px;
+  transition: border-color .3s ease-in-out;
+  &:focus {
+    border-color: ${(props) => props.theme.red};
+  }
+`
 
 export default function SignIn({ username }){
-
   return (
     <Formik
       initialValues={{ username: username, password: '' }}
@@ -17,8 +31,12 @@ export default function SignIn({ username }){
       }
       render={({ errors, touched }) => (
         <Form>
-          <Field name="username" type="text"/>
-          <Field name="password" type="password"/>
+          <StyledLabel htmlFor="username">username</StyledLabel>
+          <StyledField name="username" type="text"/>
+          { errors.username }
+          <StyledLabel hmtlFor="password">password</StyledLabel>
+          <StyledField name="password" type="password"/>
+          { errors.username }
           <Button text="sign in"/>
         </Form>
       )}/>

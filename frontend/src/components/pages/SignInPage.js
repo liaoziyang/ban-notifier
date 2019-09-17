@@ -19,7 +19,7 @@ const Right = styled.div`
 export default function SignInPage(){
   return (
     <Container>
-      <Left><SignIn/></Left>
+      <Left><SignIn username={localStorage.getItem('username') || ''}/></Left>
       <Right>this is the right side</Right>
     </Container>
   )
