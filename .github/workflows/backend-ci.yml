@@ -21,7 +21,7 @@ jobs:
       run: |
         cd backend
         yarn
-        yarn run build --if-present
+        yarn run build
         yarn test
       env:
         CI: true
