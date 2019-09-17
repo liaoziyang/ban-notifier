@@ -19,10 +19,16 @@ jobs:
         cd backend
         yarn
     - name: yarn build
-      run: yarn build
+      run: |
+        cd backend
+        yarn build
     - name: yarn test
-      run: yarn test
+      run: |
+        cd backend
+        yarn test
     - name: yarn lint
-      run: yarn lint
+      run: |
+        cd backend
+        yarn lint
       env:
         CI: true
