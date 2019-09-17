@@ -30,6 +30,10 @@ jobs:
       run: |
         cd backend
         yarn lint
+    - name: yarn audit
+      run: |
+        cd backend
+        yarn audit
     - name: Upload artifact
       uses: actions/upload-artifact@v1.0.0
       with:
