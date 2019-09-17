@@ -20,6 +20,7 @@
     "axios": "^0.19.0",
     "dotenv": "^8.1.0",
     "fetch-suspense": "^1.2.0",
+    "formik": "^1.5.8",
     "normalize.css": "^8.0.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
