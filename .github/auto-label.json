@@ -1,10 +1,12 @@
 {
     "rules": {
       "frontend": ["frontend/*"],
-      "react-component": ["frontend/src/components/layout/*"],
       "backend": ["backend/*"],
+      "react-component": ["frontend/src/components/layout/*"],
       "API": ["backend/**/*.controller.ts"],
       "authentication": ["backend/src/auth/*", "frontend/src/components/auth/*"],
-      "ci": ".github/workflows/*"
+      "ci": ".github/workflows/*",
+      "dependencies": ["frontend/package.json", "backend/package.json"],
+      "faceit": ["backend/src/faceit/*"]
     }
   }
