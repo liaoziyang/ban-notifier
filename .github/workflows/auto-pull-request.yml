@@ -1,17 +1,12 @@
 name: Tasks on pull requests
 
-on: [push]
+on: [create]
 
 jobs:
   build:
-    name: on-pull
     runs-on: ubuntu-latest
     steps:
     - name: auto-pull-request
       uses: repetitive/actions/auto-pull-request@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: auto-label
-      uses: banyan/auto-label@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
