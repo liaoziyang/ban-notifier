@@ -44,7 +44,7 @@ export class UserRepository extends Repository<User> {
     }
 
     async getUsersWithFaceIt(): Promise<User[]> {
-        const users = await this.find({ where: { faceitId: Not(IsNull()) }, select: ['faceitId', 'username'] })
+        const users = await this.find({ where: { faceitId: Not(IsNull()) }, select: ['faceitId', 'username'] });
         return users;
     }
 

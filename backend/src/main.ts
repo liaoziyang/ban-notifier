@@ -7,7 +7,7 @@ async function bootstrap() {
   const logger = new Logger('bootstrap');
 
   process.on('unhandledRejection', e => {
-    logger.error(`Unhandled Promise rejection! ${e}`)
+    logger.error(`Unhandled Promise rejection! ${e}`);
     throw e;
   });
 
@@ -17,7 +17,5 @@ async function bootstrap() {
 
   logger.log(`Application listening on port ${process.env.PORT}`);
 
-
 }
 bootstrap();
-

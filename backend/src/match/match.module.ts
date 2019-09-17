@@ -7,10 +7,8 @@ import { MatchRepository } from './match.repository';
 @Module({
     imports: [
         TypeOrmModule.forFeature([MatchRepository]),
-        BullModule.register({
-            name: 'matches'
-        })
     ],
-    providers: [MatchService]
+    providers: [MatchService],
+    exports: [MatchService],
 })
 export class MatchModule { }

@@ -6,5 +6,4 @@ import Match from './match.entity';
 export class MatchRepository extends Repository<Match> {
     private logger = new Logger('MatchRepository');
 
-
 }

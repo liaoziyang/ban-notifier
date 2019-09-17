@@ -1,9 +1,11 @@
 import { Injectable, Logger, HttpService } from '@nestjs/common';
-import { InjectQueue, Processor, Process, OnQueueEvent, BullQueueEvents } from 'nest-bull';
-import { Queue, Job } from 'bull';
+import { Processor, Process, OnQueueStalled, OnQueueFailed, OnQueueError, OnQueueCompleted } from 'nest-bull';
+import { Job } from 'bull';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepository } from '../user/user.repository';
 import { ConfigService } from '../config/config.service';
+import { MatchService } from '../match/match.service';
+import { MatchType } from '../match/match.type.interface';
 
 @Injectable()
 @Processor({ name: 'faceit' })
@@ -13,33 +15,26 @@ export class FaceitService {
     constructor(
         @InjectRepository(UserRepository)
         private userRepository: UserRepository,
-        @InjectQueue('faceit')
-        readonly queue: Queue,
         private readonly httpService: HttpService,
-        private readonly config: ConfigService
+        private readonly config: ConfigService,
+        private matchService: MatchService,
     ) {
-        // Add repeated job for getting user matches
-        queue.add({}, { repeat: { cron: '* * * * *' } })
-        this.faceitApiKey = config.get('FACEIT_API')
+        this.faceitApiKey = config.get('FACEIT_API');
     }
 
     @Process({ name: '__default__' })
-    async getMatchesForUsers() {
+    async getMatchesForUsers(job: Job): Promise<void> {
         const users = await this.userRepository.getUsersWithFaceIt();
         this.logger.verbose(`Found ${users.length} faceit users to check for new matches`);
         for (const user of users) {
             const history = await this.getPlayerHistory(user.faceitId);
 
             this.logger.debug(`Found ${history.data.items.length} matches for user "${user.username}" with FaceIt ID "${user.faceitId}"`);
-            return history.data.items;
+            for (const match of history.data.items) {
+                this.matchService.handleMatch(MatchType.CSGOFaceIt, match);
+            }
         }
-    }
-
-    @OnQueueEvent(BullQueueEvents.COMPLETED)
-    onCompleted(job: Job) {
-        this.logger.verbose(
-            `Completed job ${job.id} of type ${job.name}`,
-        );
+        return;
     }
 
     private async getPlayerHistory(id: string) {
@@ -48,7 +43,7 @@ export class FaceitService {
                 headers: this.getHeaders(),
                 params: {
                     limit: 100,
-                }
+                },
             }).toPromise();
             return response;
         } catch (error) {
@@ -58,7 +53,29 @@ export class FaceitService {
     }
 
     private getHeaders() {
-        return { 'Authorization': `Bearer ${this.faceitApiKey}` }
+        return { Authorization: `Bearer ${this.faceitApiKey}` };
+    }
+
+    @OnQueueCompleted()
+    onCompleted(job: Job) {
+        this.logger.verbose(
+            `Completed job ${job.id} of type ${job.name} from queue ${job.queue.name}`,
+        );
+    }
+
+    @OnQueueStalled()
+    onStalled(job: Job) {
+        this.logger.warn(`Job ${job.id} of type ${job.name} from queue ${job.queue.name} was stalled!`);
+    }
+
+    @OnQueueFailed()
+    onFailed(job: Job) {
+        this.logger.error(`Job ${job.id} of type ${job.name} from queue ${job.queue.name} has failed!`);
+    }
+
+    @OnQueueError()
+    onError(error) {
+        this.logger.error(`An error occured in a queue!`, error.stack);
     }
 
 }

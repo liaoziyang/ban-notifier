@@ -1,17 +1,20 @@
-import { Injectable } from '@nestjs/common';
-import { InjectQueue, Processor } from 'nest-bull';
-import { Queue } from 'bull';
+import { Injectable, Logger } from '@nestjs/common';
+import { Processor } from 'nest-bull';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MatchRepository } from './match.repository';
+import { MatchType } from './match.type.interface';
 
 @Injectable()
 @Processor({ name: 'matches' })
 export class MatchService {
+  private logger = new Logger('MatchService');
     constructor(
         @InjectRepository(MatchRepository)
         private matchRepository: MatchRepository,
-        @InjectQueue('matches')
-        readonly matchesQueue: Queue
     ) {
+     }
+
+     public handleMatch(type: MatchType, data) {
+      this.logger.debug(`Handling a new match of type ${type} with data: ${JSON.stringify(data)}`);
      }
 }
