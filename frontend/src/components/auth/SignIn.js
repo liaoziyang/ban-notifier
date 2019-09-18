@@ -26,12 +26,14 @@ export default function SignIn({ username }){
     <Formik
       initialValues={{ username: username, password: '' }}
       onSubmit={async(values, actions) => {
+        console.log(actions)
         const response = await post('/auth/signup', values)
-        if (response.status === 400 ){
+        if (response.status === 400){
           // show errors
-        }
-        else {
+          console.log('there was an error')
+        } else {
           // everything works you can be signed in
+          console.log('everything worked just fine')
         }
       }
       }

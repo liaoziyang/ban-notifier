@@ -22,15 +22,15 @@ const StyledField = styled(Field)`
 `
 
 export default function SignUp(){
-  const SignupSchema = Yup.object().shape({
+  const signupSchema = Yup.object().shape({
     username: Yup.string()
       .min(4, 'Too short!')
       .max(20, 'Too Long!')
+      .matches('[A-Za-z0-9_-]', 'should only contain letters, numbers, dash or underscores')
       .required('This field is Required'),
     password: Yup.string()
       .min(8, 'Too short!')
       .max(20, 'Too long!')
-      .matches(/(?=.*\d)/, 'should contain a digit.')
       .matches(/(?=.*\W+)/, 'should contain a special char')
       .matches(/(?=.*[A-Z])/, 'should contain a capital letter')
       .matches(/(?=.*[a-z].*$)/,'should contain a small letter')
@@ -42,8 +42,7 @@ export default function SignUp(){
   return (
     <Formik
       initialValues={{ username: 'test', password: 'test', repeatPassword: 'test' }}
-      onSubmit={async(values, actions) => {
-        console.log(actions)
+      onSubmit={async(values) => {
         const res = await post('/auth/signup', values)
         res.status === 400 ? filterErrors(res.data.message) : console.log('is gelukt')
       }
@@ -60,7 +59,7 @@ export default function SignUp(){
           <Button submit text="sign in"/>
         </Form>
       )}
-      validationSchema={SignupSchema}/>
+      validationSchema={signupSchema}/>
   )
 }
 
