@@ -18,7 +18,9 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "db:migrate": "yarn typeorm migration:run"
+    "db:migrate": "yarn typeorm migration:run",
+    "docs:serve": "yarn docs:build -s",
+    "docs:build": "rimraf documentation && compodoc -p tsconfig.json -d documentation"
   },
   "dependencies": {
     "@hapi/joi": "^16.1.1",
@@ -46,6 +48,7 @@
     "typeorm": "^0.2.19"
   },
   "devDependencies": {
+    "@compodoc/compodoc": "^1.1.10",
     "@nestjs/testing": "^6.7.1",
     "@types/bull": "^3.10.2",
     "@types/dotenv": "^6.1.1",
