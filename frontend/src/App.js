@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import Routing from './components/Routing'
+import 'normalize.css'
+import Style from './constants/style'
 
 export default function App(){
   return (
-    <div>react works!</div>
+    <Fragment>
+      <Style/>
+      <Routing/>
+    </Fragment>
   )
 }

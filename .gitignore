@@ -59,3 +59,5 @@ pids
 # tmp folders
 */tmp
 frontend/test/tmp
+
+*/coverage

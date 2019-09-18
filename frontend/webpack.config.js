@@ -15,13 +15,15 @@ const commonConfig = merge([
   parts.IO(),
   parts.loaders(),
   parts.loadHtml(),
-  parts.cssExtract()
+  parts.cssExtract(),
+  parts.globalVariables()
 ])
 
 const productionConfig = merge([
-  //parts.cleanDist(),
+  parts.cleanDist(),
   parts.manifest(),
   parts.generateFavicon(),
+  parts.banner(),
   parts.minify(),
   parts.minimizeImages()
 ])
@@ -29,7 +31,7 @@ const productionConfig = merge([
 const developmentConfig = merge([
   parts.devServer({
     // customize host/port in env
-    host: process.env.WP_HOST,
+    host: process.env.HOSTNAME,
     port: process.env.WP_PORT
   })
 ])

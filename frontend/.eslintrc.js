@@ -4,6 +4,9 @@ module.exports = {
     'react-hooks',
     'react'
   ],
+  globals: {
+    '__API__': 'readonly'
+  },
   env: {
     'browser': true,
     'node': true,
@@ -78,6 +81,7 @@ module.exports = {
     'react/sort-comp':                    [1, {
       'order': ['lifecycle', 'render', 'static-methods', 'everything-else']
     }],
-    'react/sort-prop-types':              [2, { 'ignoreCase': true }]
+    'react/sort-prop-types':              [2, { 'ignoreCase': true }],
+    'react/display-name':                 0
   }
 }

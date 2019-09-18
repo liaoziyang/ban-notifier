@@ -1,4 +1,6 @@
 // const CleanWebpackPlugin = require('clean-webpack-plugin')
+const webpack = require('webpack')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const HtmlWebPackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -40,29 +42,48 @@ exports.devServer = ({ host, port } = {}) => ({
   }
 })
 
-exports.generateFavicon = () => ({
+exports.globalVariables = () => ({
   plugins: [
-    new FaviconsWebpackPlugin({
-      logo:           './public/icon.png',
-      statsFilename:  'faviconStats-[hash].json',
-      inject:         true,
-      title:          'Banter'
+    new webpack.DefinePlugin({
+      __API__: JSON.stringify(process.env.API)
     })
   ]
 })
 
-//exports.cleanDist = () => ({
-//plugins: [
-// new CleanWebpackPlugin({
-//   dry: true,
-//  }),
-// ],
-//});
+exports.generateFavicon = () => ({
+  plugins: [
+    new FaviconsWebpackPlugin({
+      logo:           './src/assets/icon/icon.png',
+      statsFilename:  'faviconStats-[hash].json',
+      inject:         true,
+      title:          'Banter',
+      caches:         true,
+      outputPath:     '/assets/icons/'
+    })
+  ]
+})
+
+exports.banner = () => ({
+  plugins: [
+    new webpack.BannerPlugin({
+      banner: 'contributed by: github.com/emielvanseveren, github.com/niekcandaele hash:[hash] name:[name]'
+    })
+  ]
+})
+
+exports.cleanDist = () => ({
+  plugins: [
+    new CleanWebpackPlugin({
+      dry:     true,
+      verbose: false
+    })
+  ]
+})
 
 exports.loadHtml = () => ({
   plugins: [
     new HtmlWebPackPlugin({
-      template: './public/index.html',
+      template: './src/index.html',
       filename: 'index.html'
     })
   ]
@@ -155,12 +176,18 @@ exports.loaders = () => ({
         ]
       },
       {
-        // webpack will if the file is smaller than 25000 inline the image, a source less to load with a call.
-        test: /\.(jpg|png|svg|webp)$/,
+        test:    /\.(png|jp?g|gif)$/i,
+        loader:  'file-loader',
+        options: {
+          name:        '[name].[ext]'
+        }
+      },
+      {
+        test: /\.(jp?g|png|svg|webp)$/,
         use:  {
           loader:   'url-loader',
           options:  {
-            limit:  25000
+            limit:  8192
           }
         }
       }
