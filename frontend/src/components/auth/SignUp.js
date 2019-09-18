@@ -34,12 +34,10 @@ export default function SignUp(){
       .matches(/(?=.*\W+)/, 'should contain a special char')
       .matches(/(?=.*[A-Z])/, 'should contain a capital letter')
       .matches(/(?=.*[a-z].*$)/,'should contain a small letter')
-      .matches(/?![.\n]/)
-      .matches(/(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)
+      .matches(/(?=.*\W+)/, 'what is this?')
+      .matches(/(?![.\n])/, 'should contain a number')
       .required('This field is required'),
-
     repeatPassword: Yup.ref('password')
-
   })
   return (
     <Formik
@@ -54,7 +52,7 @@ export default function SignUp(){
         <Form>
           <StyledLabel htmlFor="username">Username</StyledLabel>
           <StyledField name="username" type="text"/>
-          <ErrorMessage name="username" component="div"/>
+          <ErrorMessage component="div" name="username"/>
           <StyledLabel hmtlFor="password">Password</StyledLabel>
           <StyledField name="password" type="password"/>
           <ErrorMessage component="div" name="password"/>
