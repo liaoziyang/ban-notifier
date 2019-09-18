@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { post } from '../../helpers/api'
 import { Formik, Form, Field } from 'formik'
 import Button from '../layout/Button'
 
@@ -24,8 +25,9 @@ export default function SignIn({ username }){
   return (
     <Formik
       initialValues={{ username: username, password: '' }}
-      onSubmit={(values, actions) => {
-        console.log(values)
+      onSubmit={async(values, actions) => {
+        const res = await post('/auth/signup', values)
+        console.log(res)
         console.log(actions)
       }
       }
@@ -37,7 +39,7 @@ export default function SignIn({ username }){
           <StyledLabel hmtlFor="password">Password</StyledLabel>
           <StyledField name="password" type="password"/>
           { errors.username }
-          <Button text="sign in"/>
+          <Button submit text="sign in"/>
         </Form>
       )}/>
   )

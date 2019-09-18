@@ -1,6 +1,5 @@
 import React, { Suspense, Fragment, useState } from 'react'
 import io from 'socket.io-client'
-import useFetch from 'fetch-suspense'
 import styled from 'styled-components'
 import Loading from './Loading'
 const Container = styled.div`

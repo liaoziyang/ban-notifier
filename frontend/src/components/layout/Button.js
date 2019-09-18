@@ -16,9 +16,9 @@ const Container = styled.button`
   }
 `
 
-export default function Button({ text, colored, hoverDirection }){
+export default function Button({ text, colored, hoverDirection, submit }){
   return (
-    <Container colored={colored} hoverDirection={hoverDirection}>
+    <Container colored={colored} hoverDirection={hoverDirection} type={submit ? 'submit' : 'button'}>
       { text }
     </Container>
   )
@@ -27,9 +27,11 @@ export default function Button({ text, colored, hoverDirection }){
 Button.propTypes = {
   colored:        PropTypes.bool,
   hoverDirection: PropTypes.oneOf(['horizontal', 'vertical']),
+  submit:         PropTypes.bool,
   text:           PropTypes.string.isRequired
 }
 Button.defaultProps = {
   colored:        true,
-  hoverDirection: 'vertical'
+  hoverDirection: 'vertical',
+  submit:         false
 }

@@ -13,7 +13,7 @@ module.exports = {
     "jest": true
   },
   parserOptions: {
-    "ecmaVersion": 6,
+    "ecmaVersion": 11,
             "sourceType": "module",
             "ecmaFeatures": {
                 "jsx": true,
