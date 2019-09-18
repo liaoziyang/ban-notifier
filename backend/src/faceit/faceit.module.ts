@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserRepository } from '../user/user.repository';
 import { ConfigModule } from '../config/config.module';
 import { MatchModule } from '../match/match.module';
+import { QueueModule } from '../queue/queue.module';
 
 @Module({
   imports: [

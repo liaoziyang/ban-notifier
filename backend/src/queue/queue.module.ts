@@ -11,5 +11,6 @@ import { BullModule } from 'nest-bull';
     }]),
   ],
   providers: [QueueService],
+  exports: [QueueService],
 })
 export class QueueModule {}

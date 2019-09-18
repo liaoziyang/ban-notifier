@@ -1,4 +1,4 @@
 export enum MatchType {
-    CSGOFaceIt = 1,
+    CSGOFaceIt = 0,
     CSGOMatchMaking,
 }

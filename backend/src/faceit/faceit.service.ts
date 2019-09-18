@@ -31,7 +31,7 @@ export class FaceitService {
 
             this.logger.debug(`Found ${history.data.items.length} matches for user "${user.username}" with FaceIt ID "${user.faceitId}"`);
             for (const match of history.data.items) {
-                this.matchService.handleMatch(MatchType.CSGOFaceIt, match);
+                this.matchService.addMatchToQueue(MatchType.CSGOFaceIt, match);
             }
         }
         return;
