@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { post } from '../../helpers/api'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import Button from '../layout/Button'
-import Joi from 'joi'
+import * as Yup from 'yup'
 
 const StyledLabel = styled.label`
   color: ${(props) => props.theme.gray};
@@ -22,23 +22,30 @@ const StyledField = styled(Field)`
 `
 
 export default function SignUp(){
-  const SignupSchema = Joi.object({
-    username: Joi.string()
-      .min(4)
-      .max(20),
+  const SignupSchema = Yup.object().shape({
+    username: Yup.string()
+      .min(4, 'Too short!')
+      .max(20, 'Too Long!')
+      .required('This field is Required'),
+    password: Yup.string()
+      .min(8, 'Too short!')
+      .max(20, 'Too long!')
+      .matches(/(?=.*\d)/, 'should contain a digit.')
+      .matches(/(?=.*\W+)/, 'should contain a special char')
+      .matches(/(?=.*[A-Z])/, 'should contain a capital letter')
+      .matches(/(?=.*[a-z].*$)/,'should contain a small letter')
+      .matches(/?![.\n]/)
+      .matches(/(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/)
+      .required('This field is required'),
 
-    password: Joi.string()
-      .min(8)
-      .max(20)
-      .pattern(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/),
-    repeatPassword: Joi.ref('password')
+    repeatPassword: Yup.ref('password')
 
   })
   return (
     <Formik
       initialValues={{ username: 'test', password: 'test', repeatPassword: 'test' }}
-      
       onSubmit={async(values, actions) => {
+        console.log(actions)
         const res = await post('/auth/signup', values)
         res.status === 400 ? filterErrors(res.data.message) : console.log('is gelukt')
       }
