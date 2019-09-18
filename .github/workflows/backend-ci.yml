@@ -30,10 +30,6 @@ jobs:
       run: |
         cd backend
         yarn lint
-    - name: yarn audit
-      run: |
-        cd backend
-        yarn audit
     - name: Documentation
       run: |
         cd backend
