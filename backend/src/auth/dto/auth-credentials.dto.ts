@@ -4,6 +4,7 @@ export class AuthCredentialsDto {
     @IsString()
     @MinLength(4)
     @MaxLength(20)
+    @Matches(/[A-Za-z0-9_-]/)
     username: string;
 
     @IsString()
