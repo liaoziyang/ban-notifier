@@ -2,13 +2,26 @@ import * as dotenv from 'dotenv';
 import * as Joi from '@hapi/joi';
 import * as fs from 'fs';
 
+/**
+ * .env config
+ */
 export interface EnvConfig {
     [key: string]: string;
 }
 
+/**
+ * Handle configuration values
+ */
 export class ConfigService {
+    /**
+     * Holds the env config
+     */
     private envConfig: EnvConfig;
 
+    /**
+     * Reads the .env file
+     * @param filePath
+     */
     constructor(filePath: string) {
         let config;
         if (filePath) {
@@ -17,10 +30,11 @@ export class ConfigService {
         this.envConfig = this.validateInput(config);
     }
 
-    /**
-     * Ensures all needed variables are set, and returns the validated JavaScript object
-     * including the applied default values.
-     */
+     /**
+      * Ensures all needed variables are set, and returns the validated JavaScript object
+      * including the applied default values.
+      * @param envConfig 
+      */
     private validateInput(envConfig: EnvConfig): EnvConfig {
         const envVarsSchema: Joi.ObjectSchema = Joi.object({
             NODE_ENV: Joi.string()
@@ -45,6 +59,10 @@ export class ConfigService {
         return validatedEnvConfig;
     }
 
+    /**
+     * Get a config value
+     * @param key 
+     */
     get(key: string): string {
         return this.envConfig[key];
     }

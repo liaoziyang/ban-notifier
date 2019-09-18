@@ -4,9 +4,19 @@ import { AuthCredentialsDto } from 'src/auth/dto/auth-credentials.dto';
 import { ConflictException, InternalServerErrorException, Logger } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 
+/**
+ * Database operations for User
+ */
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
+    /**
+     * The logger, duh :)
+     */
     private logger = new Logger('UserRepository');
+    /**
+     * Register a user, hashes password with salt
+     * @param authCredentialsDto 
+     */
     async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
         const { username, password } = authCredentialsDto;
 
@@ -28,6 +38,10 @@ export class UserRepository extends Repository<User> {
         }
     }
 
+    /**
+     * Check if a given password is correct for a user
+     * @param authCredentialsDto 
+     */
     async validateUserPassword(authCredentialsDto: AuthCredentialsDto): Promise<string> {
         const { username, password } = authCredentialsDto;
         const user = await this.findOne({ username });
@@ -39,10 +53,18 @@ export class UserRepository extends Repository<User> {
         }
     }
 
+    /**
+     * Calls bcrypt.hash
+     * @param password 
+     * @param salt 
+     */
     private async hashPassword(password: string, salt: string): Promise<string> {
         return bcrypt.hash(password, salt);
     }
 
+    /**
+     * Get users who have linked their Faceit account
+     */
     async getUsersWithFaceIt(): Promise<User[]> {
         const users = await this.find({ where: { faceitId: Not(IsNull()) }, select: ['faceitId', 'username'] });
         return users;

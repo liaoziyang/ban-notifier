@@ -5,14 +5,28 @@ import TrackedAccount from './trackedAccount.entity';
 import { DeleteResult } from 'typeorm';
 import { CreateTrackedAccountDto } from './dto/create-tracked-account.dto';
 
+/**
+ * Service for TrackedAccount
+ */
 @Injectable()
 export class TrackedAccountService {
+    /**
+     * The logger
+     */
     private logger = new Logger('TrackedAccountService');
 
+    /**
+     * Inject dependencies
+     * @param trackedAccountRepository 
+     */
     constructor(
         @InjectRepository(TrackedAccountRepository)
         private trackedAccountRepository: TrackedAccountRepository) { }
 
+    /**
+     * Find a trackedAccount by ID
+     * @param id 
+     */
     async getTrackedAccountById(id: number): Promise<TrackedAccount> {
         const found = await this.trackedAccountRepository.findOne(id);
 
@@ -23,6 +37,11 @@ export class TrackedAccountService {
         return found;
     }
 
+    /**
+     * Create a tracked account
+     * If an account with the same Steam ID already exists, the existing record is returned
+     * @param createTrackedAccountDto 
+     */
     async createTrackedAccount(createTrackedAccountDto: CreateTrackedAccountDto): Promise<TrackedAccount> {
         const { steamId } = createTrackedAccountDto;
         const trackedAccount = new TrackedAccount();
@@ -41,9 +60,12 @@ export class TrackedAccountService {
                 throw error;
             }
         }
-
     }
 
+    /**
+     * Delete record from database
+     * @param id 
+     */
     async deleteTrackedAccount(id: number): Promise<DeleteResult> {
         const deleted = await this.trackedAccountRepository.delete(id);
         return deleted;

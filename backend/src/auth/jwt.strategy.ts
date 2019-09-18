@@ -7,8 +7,16 @@ import { UserRepository } from '../user/user.repository';
 import User from '../user/user.entity';
 import { ConfigService } from '../config/config.service';
 
+/**
+ * JSON web token strategy for passport
+ */
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
+    /**
+     * Inject dependencies
+     * @param userReposity 
+     * @param config 
+     */
     constructor(
         @InjectRepository(UserRepository)
         private userReposity: UserRepository,
@@ -20,6 +28,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
         });
     }
 
+    /**
+     * Validate if a JWT if valid
+     * @param payload 
+     */
     async validate(payload: JwtPayload): Promise<User> {
         const { username } = payload;
         const user = await this.userReposity.findOne({ username });

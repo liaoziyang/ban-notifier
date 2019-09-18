@@ -3,6 +3,9 @@ import { AppModule } from './app.module';
 import * as dotenv from 'dotenv';
 import { Logger } from '@nestjs/common';
 
+/**
+ * Start the application
+ */
 async function bootstrap() {
   const logger = new Logger('bootstrap');
 

@@ -3,8 +3,15 @@ import { CsgoMatchDto } from '../dto/csgoMatch.dto';
 import { MatchType } from '../match.type.interface';
 import { PlayerInMatch } from '../interface/player.interface';
 
+/**
+ * Transforms data from the Faceit API into usable form
+ */
 @Injectable()
 export class FaceItMatchPipe implements PipeTransform<any, CsgoMatchDto> {
+    /**
+     * Does the thing :)
+     * @param value 
+     */
     transform(value: any): CsgoMatchDto {
 
         const players: PlayerInMatch[] = value.teams.faction1.players.concat(value.teams.faction2.players).map(player => {
