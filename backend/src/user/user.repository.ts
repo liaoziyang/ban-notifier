@@ -1,4 +1,4 @@
-import { Repository, EntityRepository } from 'typeorm';
+import { Repository, EntityRepository, Not, IsNull } from 'typeorm';
 import User from './user.entity';
 import { AuthCredentialsDto } from 'src/auth/dto/auth-credentials.dto';
 import { ConflictException, InternalServerErrorException, Logger } from '@nestjs/common';
@@ -41,6 +41,11 @@ export class UserRepository extends Repository<User> {
 
     private async hashPassword(password: string, salt: string): Promise<string> {
         return bcrypt.hash(password, salt);
+    }
+
+    async getUsersWithFaceIt(): Promise<User[]> {
+        const users = await this.find({ where: { faceitId: Not(IsNull()) }, select: ['faceitId', 'username'] });
+        return users;
     }
 
 }
