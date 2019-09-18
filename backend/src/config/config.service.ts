@@ -33,6 +33,7 @@ export class ConfigService {
             PG_HOST: Joi.string().default('localhost'),
             PG_PORT: Joi.number().default(5432),
             JWT_SECRET: Joi.string().required(),
+            FACEIT_API: Joi.string().required(),
         });
 
         const { error, value: validatedEnvConfig } = envVarsSchema.validate(

@@ -1,8 +1,8 @@
-import React, { Suspense, Fragment } from 'react'
+import React, { Suspense, Fragment, useState } from 'react'
+import io from 'socket.io-client'
 import useFetch from 'fetch-suspense'
 import styled from 'styled-components'
 import Loading from './Loading'
-
 const Container = styled.div`
   display: grid;
   grid-gap: 10px;
@@ -36,8 +36,6 @@ const Description = styled.p`
   }
 `
 
-// fetch
-
 export default function LiveFeed(){
   return (
     <Container>
@@ -48,11 +46,23 @@ export default function LiveFeed(){
   )
 }
 
+
 function LiveFeedData(){
+  const socket = io(`${__API__}`)
+  const [ response, setResponse ] = useState({ today: 5, month: 5, lastUser: { name: 'franky', steamId: '32432'}})
   function filterName(name){
     return name.length > 14 ? name.substring(0,14) + '..' : name
   }
-  const response = useFetch(`${__API__}/tracked-account/live`, { method: 'GET' })
+
+  socket.on('connect', onNewData)
+  function onNewData(){
+    console.log(socket)
+    socket.emit('ready', { test: 'test'})
+  }
+  socket.on('events', (data) => {
+    console.log(data)
+  })
+
   return (
     <Fragment>
       <Box>
@@ -70,3 +80,4 @@ function LiveFeedData(){
     </Fragment>
   )
 }
+

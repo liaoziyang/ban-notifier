@@ -8,6 +8,9 @@ module.exports = {
   cache:          true,
   cacheDirectory: './test/tmp/jest_rs',
   clearMocks:     false,
+  globals: {
+    '__API__': process.env.API
+  },
   // coveragePathIgnorePatterns: [
   //   "/node_modules/"
   // ],

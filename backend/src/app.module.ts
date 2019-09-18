@@ -7,6 +7,9 @@ import { BanModule } from './ban/ban.module';
 import { TrackedAccountModule } from './tracked-account/tracked-account.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigService } from './config/config.service';
+import { FaceitModule } from './faceit/faceit.module';
+import { MatchModule } from './match/match.module';
+import { QueueModule } from './queue/queue.module';
 
 // Does not happen in config service because it's a PITA to parse the values from the service inside module initialization
 dotenv.config();
@@ -25,6 +28,9 @@ dotenv.config();
     BanModule,
     TrackedAccountModule,
     AuthModule,
+    FaceitModule,
+    MatchModule,
+    QueueModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],

@@ -1,7 +1,6 @@
-
 import React, { Fragment } from 'react'
 import Routing from './components/Routing'
-// import 'normalize.css' FIX THIS LATER
+import 'normalize.css'
 import Style from './constants/style'
 
 export default function App(){
@@ -10,4 +9,5 @@ export default function App(){
       <Style/>
       <Routing/>
     </Fragment>
+  )
 }
