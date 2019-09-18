@@ -20,7 +20,8 @@
     "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "db:migrate": "yarn typeorm migration:run",
     "docs:serve": "yarn docs:build -s",
-    "docs:build": "rimraf documentation && compodoc -p tsconfig.json -d documentation"
+    "docs:build": "rimraf documentation && compodoc -p tsconfig.json -d documentation",
+    "docs:coverage": "yarn docs:build --coverageTest"
   },
   "dependencies": {
     "@hapi/joi": "^16.1.1",

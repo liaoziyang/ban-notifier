@@ -34,6 +34,10 @@ jobs:
       run: |
         cd backend
         yarn audit
+    - name: Documentation
+      run: |
+        cd backend
+        yarn docs:coverage
     - uses: codecov/codecov-action@v1.0.2
       with:
         token: ${{secrets.CODECOV_TOKEN}} #required
