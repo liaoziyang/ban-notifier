@@ -10,7 +10,7 @@ import { PlayerInMatch } from 'src/match/interface/player.interface';
 export class UserService {
     /**
      * Inject dependencies
-     * @param userRepository 
+     * @param userRepository
      */
     constructor(
         @InjectRepository(UserRepository)
@@ -19,7 +19,7 @@ export class UserService {
 
     /**
      * Find a User based on their Steam or Faceit ID
-     * @param player 
+     * @param player
      */
     public async findUserBySteamOrFaceItId(player: PlayerInMatch) {
         const response = await this.userRepository.findOne({

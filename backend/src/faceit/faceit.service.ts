@@ -14,7 +14,7 @@ import { MatchType } from '../match/match.type.interface';
 @Processor({ name: 'faceit' })
 export class FaceitService {
     /**
-     * The logger 
+     * The logger
      */
     private logger = new Logger('FaceitService');
     /**
@@ -23,10 +23,10 @@ export class FaceitService {
     private faceitApiKey: string;
     /**
      * Inject dependencies
-     * @param userRepository 
-     * @param httpService 
-     * @param config 
-     * @param matchService 
+     * @param userRepository
+     * @param httpService
+     * @param config
+     * @param matchService
      */
     constructor(
         @InjectRepository(UserRepository)
@@ -42,7 +42,7 @@ export class FaceitService {
      * Processor for the Faceit queue
      * Gets users who have linked their Faceit profile and checks for new matches
      * Found matches are then added to the matches queue for further processing
-     * @param job 
+     * @param job
      */
     @Process({ name: '__default__' })
     async getMatchesForUsers(job: Job): Promise<void> {
@@ -61,7 +61,7 @@ export class FaceitService {
 
     /**
      * Get the matches for a player in the last month
-     * @param id 
+     * @param id
      */
     private async getPlayerHistory(id: string) {
         try {
@@ -87,7 +87,7 @@ export class FaceitService {
 
     /**
      * Listener for job completion
-     * @param job 
+     * @param job
      */
     @OnQueueCompleted()
     onCompleted(job: Job) {
@@ -98,7 +98,7 @@ export class FaceitService {
 
     /**
      * Listener for job stalled
-     * @param job 
+     * @param job
      */
     @OnQueueStalled()
     onStalled(job: Job) {
@@ -107,7 +107,7 @@ export class FaceitService {
 
     /**
      * Listener for job failed
-     * @param job 
+     * @param job
      */
     @OnQueueFailed()
     onFailed(job: Job) {
@@ -116,7 +116,7 @@ export class FaceitService {
 
     /**
      * Listener for queue error
-     * @param job 
+     * @param job
      */
     @OnQueueError()
     onError(error) {

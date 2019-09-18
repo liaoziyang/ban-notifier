@@ -9,13 +9,13 @@ import { AuthService } from './auth.service';
 export class AuthController {
     /**
      * Inject dependencies
-     * @param authService 
+     * @param authService
      */
     constructor(private authService: AuthService) { }
 
     /**
      * Register a user
-     * @param authCredentialsDto 
+     * @param authCredentialsDto
      */
     @Post('/signup')
     signUp(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<void> {
@@ -24,7 +24,7 @@ export class AuthController {
 
     /**
      * Log in a user
-     * @param authCredentialsDto 
+     * @param authCredentialsDto
      */
     @Post('/signin')
     signIn(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<{ accessToken: string }> {

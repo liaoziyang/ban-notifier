@@ -17,8 +17,8 @@ export class QueueService {
     private logger = new Logger('QueueService');
     /**
      * Inject dependencies
-     * @param faceitQueue 
-     * @param matchesQueue 
+     * @param faceitQueue
+     * @param matchesQueue
      */
     constructor(
         @InjectQueue('faceit')
@@ -35,7 +35,7 @@ export class QueueService {
 
     /**
      * Get a Queue instance
-     * @param key 
+     * @param key
      */
     public getQueue(key: string) {
         if (!this.queues.has(key)) {

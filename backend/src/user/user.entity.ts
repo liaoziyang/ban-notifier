@@ -64,7 +64,7 @@ export default class User extends BaseEntity {
 
     /**
      * Check if a password is correct for user
-     * @param password 
+     * @param password
      */
     async validatePassword(password: string): Promise<boolean> {
         const hash = await bcrypt.hash(password, this.salt);

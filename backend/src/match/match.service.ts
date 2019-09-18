@@ -29,10 +29,10 @@ export class MatchService {
   private matchesQueue: Queue;
   /**
    * Inject the imported dependencies
-   * @param matchRepository 
-   * @param queueService 
-   * @param userService 
-   * @param trackedAccountService 
+   * @param matchRepository
+   * @param queueService
+   * @param userService
+   * @param trackedAccountService
    */
   constructor(
     @InjectRepository(MatchRepository)
@@ -47,7 +47,7 @@ export class MatchService {
   /**
    * Called from other services that check for new matches. Adds the data to the queue to be processed.
    * @param type Type of the match (faceit, matchmaking, ...)
-   * @param data 
+   * @param data
    */
   public async addMatchToQueue(type: MatchType, data) {
     this.logger.debug(`addMatchToQueue() - Handling a new match of type ${type}`);
@@ -64,7 +64,7 @@ export class MatchService {
   /**
    * Processes matches gotten from other sources. (Currently only Faceit CSGO)
    * Transfroms the data gotten from the source into something useable by the system
-   * @param job 
+   * @param job
    */
   @Process({ name: '__default__' })
   async handleMatch(job: Job) {
@@ -87,7 +87,7 @@ export class MatchService {
 
   /**
    * Takes data from a Faceit CSGO match, parses it and stores it in the database.
-   * @param match 
+   * @param match
    */
   private async handleFaceitMatch(match: CsgoMatchDto) {
     this.logger.debug(`handleFaceitMatch() - Handling FaceIt match - ${match.id}`);
@@ -118,8 +118,8 @@ export class MatchService {
     this.logger.verbose(`handleFaceitMatch() - found ${usersInMatch.length} user(s) in match`);
 
     /**
-     *  Create TrackedAccount entities for each player in match 
-    */
+     *  Create TrackedAccount entities for each player in match
+     */
 
     for (const player of match.players) {
       const trackedAccount = await this.trackedAccountService.createTrackedAccount(player);
@@ -150,7 +150,7 @@ export class MatchService {
 
 /**
  * Takes data from a Matchmaking match and stores it in the database
- * @param match 
+ * @param match
  */
   private handleMatchmakingMatch(match: CsgoMatchDto) {
     throw new NotImplementedException();
@@ -159,7 +159,7 @@ export class MatchService {
   /**
    * Created a Match record in the database.
    * Note that the external ID has to be unique, otherwise the already existing record is returned
-   * @param data 
+   * @param data
    */
   public async createMatch(data: CsgoMatchDto): Promise<Match> {
     // Deconstruct for ease of use

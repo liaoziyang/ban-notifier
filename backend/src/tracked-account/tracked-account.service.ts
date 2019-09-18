@@ -17,7 +17,7 @@ export class TrackedAccountService {
 
     /**
      * Inject dependencies
-     * @param trackedAccountRepository 
+     * @param trackedAccountRepository
      */
     constructor(
         @InjectRepository(TrackedAccountRepository)
@@ -25,7 +25,7 @@ export class TrackedAccountService {
 
     /**
      * Find a trackedAccount by ID
-     * @param id 
+     * @param id
      */
     async getTrackedAccountById(id: number): Promise<TrackedAccount> {
         const found = await this.trackedAccountRepository.findOne(id);
@@ -40,7 +40,7 @@ export class TrackedAccountService {
     /**
      * Create a tracked account
      * If an account with the same Steam ID already exists, the existing record is returned
-     * @param createTrackedAccountDto 
+     * @param createTrackedAccountDto
      */
     async createTrackedAccount(createTrackedAccountDto: CreateTrackedAccountDto): Promise<TrackedAccount> {
         const { steamId } = createTrackedAccountDto;
@@ -64,7 +64,7 @@ export class TrackedAccountService {
 
     /**
      * Delete record from database
-     * @param id 
+     * @param id
      */
     async deleteTrackedAccount(id: number): Promise<DeleteResult> {
         const deleted = await this.trackedAccountRepository.delete(id);

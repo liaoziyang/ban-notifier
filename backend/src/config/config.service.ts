@@ -33,7 +33,7 @@ export class ConfigService {
      /**
       * Ensures all needed variables are set, and returns the validated JavaScript object
       * including the applied default values.
-      * @param envConfig 
+      * @param envConfig
       */
     private validateInput(envConfig: EnvConfig): EnvConfig {
         const envVarsSchema: Joi.ObjectSchema = Joi.object({
@@ -61,7 +61,7 @@ export class ConfigService {
 
     /**
      * Get a config value
-     * @param key 
+     * @param key
      */
     get(key: string): string {
         return this.envConfig[key];

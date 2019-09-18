@@ -16,8 +16,8 @@ export class AuthService {
     private logger = new Logger('AuthService');
     /**
      * Inject dependencies
-     * @param userRepository 
-     * @param jwtService 
+     * @param userRepository
+     * @param jwtService
      */
     constructor(
         @InjectRepository(UserRepository)
@@ -27,7 +27,7 @@ export class AuthService {
 
     /**
      * Register a new user
-     * @param authCredentialsDto 
+     * @param authCredentialsDto
      */
     async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
         return this.userRepository.signUp(authCredentialsDto);
@@ -36,7 +36,7 @@ export class AuthService {
     /**
      * Log in a user
      * Returns a JWT
-     * @param authCredentialsDto 
+     * @param authCredentialsDto
      */
     async signIn(authCredentialsDto: AuthCredentialsDto): Promise<{ accessToken: string }> {
         const username = await this.userRepository.validateUserPassword(authCredentialsDto);

@@ -15,7 +15,7 @@ export class UserRepository extends Repository<User> {
     private logger = new Logger('UserRepository');
     /**
      * Register a user, hashes password with salt
-     * @param authCredentialsDto 
+     * @param authCredentialsDto
      */
     async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
         const { username, password } = authCredentialsDto;
@@ -40,7 +40,7 @@ export class UserRepository extends Repository<User> {
 
     /**
      * Check if a given password is correct for a user
-     * @param authCredentialsDto 
+     * @param authCredentialsDto
      */
     async validateUserPassword(authCredentialsDto: AuthCredentialsDto): Promise<string> {
         const { username, password } = authCredentialsDto;
@@ -55,8 +55,8 @@ export class UserRepository extends Repository<User> {
 
     /**
      * Calls bcrypt.hash
-     * @param password 
-     * @param salt 
+     * @param password
+     * @param salt
      */
     private async hashPassword(password: string, salt: string): Promise<string> {
         return bcrypt.hash(password, salt);

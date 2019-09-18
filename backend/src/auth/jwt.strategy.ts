@@ -14,8 +14,8 @@ import { ConfigService } from '../config/config.service';
 export class JwtStrategy extends PassportStrategy(Strategy) {
     /**
      * Inject dependencies
-     * @param userReposity 
-     * @param config 
+     * @param userReposity
+     * @param config
      */
     constructor(
         @InjectRepository(UserRepository)
@@ -30,7 +30,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
     /**
      * Validate if a JWT if valid
-     * @param payload 
+     * @param payload
      */
     async validate(payload: JwtPayload): Promise<User> {
         const { username } = payload;

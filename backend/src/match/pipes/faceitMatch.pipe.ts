@@ -10,7 +10,7 @@ import { PlayerInMatch } from '../interface/player.interface';
 export class FaceItMatchPipe implements PipeTransform<any, CsgoMatchDto> {
     /**
      * Does the thing :)
-     * @param value 
+     * @param value
      */
     transform(value: any): CsgoMatchDto {
 

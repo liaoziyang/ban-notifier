@@ -12,13 +12,13 @@ import { AuthGuard } from '@nestjs/passport';
 export class TrackedAccountController {
     /**
      * Inject dependencies
-     * @param trackedAccountService 
+     * @param trackedAccountService
      */
     constructor(private trackedAccountService: TrackedAccountService) { }
 
     /**
      * Get TrackedAccount by ID
-     * @param id 
+     * @param id
      */
     @Get('/:id')
     getTrackedAccountById(@Param('id', ParseIntPipe) id: number): Promise<TrackedAccount> {
@@ -37,7 +37,7 @@ export class TrackedAccountController {
 
     /**
      * Delete a TrackedAccount
-     * @param id 
+     * @param id
      */
     @Delete('/:id')
     deleteTrackedAccountByid(@Param('id', ParseIntPipe) id: number) {
