@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  redis:
+    image: redis
+    container_name: ban-notif-redis
+    networks:
+      - bannotif
+    restart: unless-stopped
+  postgres:
+    container_name: ban-notif-postgres
+    image: postgres
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: docker
+      PGDATA: /data/postgres
+    volumes:
+       - postgres:/data/postgres
+    networks:
+      - bannotif
+    restart: unless-stopped
+  bannotifier:
+    depends_on:
+      - redis
+      - postgres
+    container_name: ban-notifier-api
+    image: ban-notif
+    environment:
+      PG_USER: docker
+      PG_PW: docker
+      PG_HOST: postgres
+      PG_DB: docker
+      JWT_SECRET: a8DFb2pkZvjGgsngoeigpzg6qg4165dq1gj44w8thwhaKUrhcrROqg48qhw9ah98vH3Y13j6PPExaeD67A6EDRzSa
+      PGDATA: /data/postgres
+      REDIS_HOST: redis
+      PORT: 30001
+    ports:
+      - "30001:30001"
+    networks:
+      - bannotif
+networks:
+  bannotif:
+    driver: bridge
+
+volumes:
+    postgres:

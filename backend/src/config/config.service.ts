@@ -24,17 +24,17 @@ export class ConfigService {
      */
     constructor(filePath: string) {
         let config;
-        if (filePath) {
+        if (filePath && fs.existsSync(filePath)) {
             config = dotenv.parse(fs.readFileSync(filePath));
         }
         this.envConfig = this.validateInput(config);
     }
 
-     /**
-      * Ensures all needed variables are set, and returns the validated JavaScript object
-      * including the applied default values.
-      * @param envConfig
-      */
+    /**
+     * Ensures all needed variables are set, and returns the validated JavaScript object
+     * including the applied default values.
+     * @param envConfig
+     */
     private validateInput(envConfig: EnvConfig): EnvConfig {
         const envVarsSchema: Joi.ObjectSchema = Joi.object({
             NODE_ENV: Joi.string()
@@ -64,6 +64,10 @@ export class ConfigService {
      * @param key
      */
     get(key: string): string {
-        return this.envConfig[key];
+        if (this.envConfig && this.envConfig[key]) {
+            return this.envConfig[key];
+        } else {
+            return process.env[key];
+        }
     }
 }
