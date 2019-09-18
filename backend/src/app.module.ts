@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, Logger } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -10,6 +10,7 @@ import { ConfigService } from './config/config.service';
 import { FaceitModule } from './faceit/faceit.module';
 import { MatchModule } from './match/match.module';
 import { QueueModule } from './queue/queue.module';
+import { UserModule } from './user/user.module';
 
 // Does not happen in config service because it's a PITA to parse the values from the service inside module initialization
 dotenv.config();
@@ -23,7 +24,7 @@ dotenv.config();
       password: process.env.PG_PW,
       database: process.env.PG_DB,
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+      synchronize: false,
     }),
     BanModule,
     TrackedAccountModule,
@@ -31,6 +32,7 @@ dotenv.config();
     FaceitModule,
     MatchModule,
     QueueModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService, ConfigService],

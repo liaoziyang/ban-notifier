@@ -10,7 +10,7 @@ export default class Ban {
     detectedAt: Date;
 
     @Column()
-    type: string; // Placeholder, needs an interface for types of bans
+    type: string; // TODO Placeholder, needs an interface for types of bans
 
     @ManyToOne(type => TrackedAccount, trackedAccount => trackedAccount.bans)
     trackedAccount: TrackedAccount;

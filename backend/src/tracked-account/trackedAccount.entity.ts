@@ -1,8 +1,9 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable, BaseEntity } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany, JoinTable, BaseEntity, Unique, Index } from 'typeorm';
 import Ban from '../ban/ban.entity';
 import User from '../user/user.entity';
 
 @Entity()
+@Unique(['steamId'])
 export default class TrackedAccount extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;

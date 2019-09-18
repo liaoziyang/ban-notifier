@@ -12,5 +12,6 @@ import { TrackedAccountGateway } from './tracked-account.gateway';
     AuthModule],
   controllers: [TrackedAccountController],
   providers: [TrackedAccountService, TrackedAccountGateway],
+  exports: [TrackedAccountService],
 })
 export class TrackedAccountModule { }
