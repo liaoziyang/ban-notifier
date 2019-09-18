@@ -5,7 +5,7 @@ import { post } from '../../helpers/api'
 import { Formik, Form, Field } from 'formik'
 import Button from '../layout/Button'
 
-const StyledLabel = styled.label`
+export const StyledLabel = styled.label`
   color: ${(props) => props.theme.gray};
   font-size: 0.825rem;
   margin-left: 2px;
@@ -26,9 +26,13 @@ export default function SignIn({ username }){
     <Formik
       initialValues={{ username: username, password: '' }}
       onSubmit={async(values, actions) => {
-        const res = await post('/auth/signup', values)
-        console.log(res)
-        console.log(actions)
+        const response = await post('/auth/signup', values)
+        if (response.status === 400 ){
+          // show errors
+        }
+        else {
+          // everything works you can be signed in
+        }
       }
       }
       render={({ errors, touched }) => (

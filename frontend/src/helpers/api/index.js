@@ -8,5 +8,5 @@ export function get(path){
   return axios.get(path).catch((error) => error.response)
 }
 export function post(path, body){
-  return axios.post(path, body).catch((error) => error.response.data)
+  return axios.post(path, body).catch((error) => error.response)
 }
