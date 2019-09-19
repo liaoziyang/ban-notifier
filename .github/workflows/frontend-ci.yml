@@ -1,8 +1,15 @@
 name: Frontend CI
 
 on:
-  push:
+  pull_request:
     paths:
+      - 'frontend/*'
+      - 'frontend/*/*'
+      - 'frontend/*/*/*'
+      - 'frontend/*/*/*/*'
+      - 'frontend/*/*/*/*/*'      
+      - 'frontend/*/*/*/*/*/*'
+  push:
     paths:
       - 'frontend/*'
       - 'frontend/*/*'

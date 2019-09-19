@@ -1,6 +1,14 @@
 name: Backend CI
 
 on:
+  pull_request:
+    paths:
+      - 'backend/*'
+      - 'backend/*/*'
+      - 'backend/*/*/*'
+      - 'backend/*/*/*/*'
+      - 'backend/*/*/*/*/*'      
+      - 'backend/*/*/*/*/*/*'  
   push:
     paths:
       - 'backend/*'
