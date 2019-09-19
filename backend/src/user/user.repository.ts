@@ -30,7 +30,7 @@ export class UserRepository extends Repository<User> {
             this.logger.debug(`New user signed up with username ${username}`);
         } catch (error) {
             if (error.code === '23505') { // Duplicate username
-                throw new ConflictException('Username already exists');
+                throw new ConflictException('Username already exists.');
             } else {
                 this.logger.error(`Failed to signup user ${user.username}`, error.stack);
                 throw new InternalServerErrorException();
