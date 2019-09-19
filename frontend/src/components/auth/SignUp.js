@@ -22,6 +22,9 @@ const StyledLabel = styled.label`
   margin-left: 2px;
   display: block;
   margin-bottom: 3px;
+  span{
+    color: ${(props) => props.theme.orange};
+  }
 `
 const StyledField = styled(Field)`
   padding: 15px 20px;
@@ -66,22 +69,22 @@ export default function SignUp(){
       render={() => (
         <StyledForm>
           <FieldContainer>
-            <StyledLabel htmlFor="email">Email address</StyledLabel>
+            <StyledLabel htmlFor="email">Email address <span>*</span></StyledLabel>
             <StyledField id="email" name="email" type="text"/>
             <StyledErrorMessage component="div" name="email"/>
           </FieldContainer>
           <FieldContainer>
-            <StyledLabel htmlFor="username">Username</StyledLabel>
+            <StyledLabel htmlFor="username">Username <span>*</span></StyledLabel>
             <StyledField id="username" name="username" type="text"/>
             <StyledErrorMessage component="div" name="username"/>
           </FieldContainer>
           <FieldContainer>
-            <StyledLabel hmtlFor="password">Password</StyledLabel>
+            <StyledLabel hmtlFor="password">Password <span>*</span></StyledLabel>
             <StyledField id="password" name="password" type="password"/>
             <StyledErrorMessage component="div" name="password"/>
           </FieldContainer>
           <FieldContainer>
-            <StyledLabel htmlFor="repeatPassword">Repeat password</StyledLabel>
+            <StyledLabel htmlFor="repeatPassword">Repeat password <span>*</span></StyledLabel>
             <StyledField id="repeatPassword" name="repeatPassword" type="password"/>
             <StyledErrorMessage component="div" name="repeatPassword"/>
           </FieldContainer>

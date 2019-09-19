@@ -1,0 +1,18 @@
+
+.Toastify__toast--error, .Toastify__toast--info, .Toastify__toast--warn, .Toastify__toast--success{
+  text-align: center;
+}
+
+/* change this later in different colors */
+.Toastify__toast--error{
+  background: #FF5E62;
+}
+.Toastify__toast--info{
+  background: linear-gradient(90deg, #FF5E62 0%, #FF9966 100%);
+}
+.Toastify__toast--warn{
+  background:#FF9966;
+}
+.Toastify__toast--success{
+  background: linear-gradient(90deg, #FF5E62 0%, #FF9966 100%);
+}

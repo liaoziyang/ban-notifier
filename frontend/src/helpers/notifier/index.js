@@ -14,7 +14,7 @@ export function error(message, position = 'bottom-center'){
 export function success(message, position = 'bottom-center'){
   return toast.success(message, { ...config, position: position })
 }
-export function info(message, position = 'bottom-center'){
+export function colored(message, position = 'bottom-center'){
   return toast.info(message, { ...config, position: position })
 }
 export function warning(message, position = 'bottom-center'){

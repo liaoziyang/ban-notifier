@@ -11,7 +11,7 @@ const signupSchema = Yup.object().shape({
     .required('This field is required.'),
   password: Yup.string()
     .min(8, 'Too short.')
-    .max(20, 'Too long.')
+    .max(30, 'Too long.')
     .matches(/(?=.*\W+)/g, 'Should contain a special char.')
     .matches(/(?=.*[A-Z])/g, 'Should contain a capital letter.')
     .matches(/(?=.*[a-z].*$)/g,'Should contain a small letter.')
