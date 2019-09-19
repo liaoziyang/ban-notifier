@@ -70,4 +70,3 @@ export default function SignUp(){
       validationSchema={signupSchema}/>
   )
 }
-

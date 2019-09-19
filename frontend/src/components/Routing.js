@@ -13,8 +13,8 @@ export default function Routing(){
     <Router forceRefresh={!supportsHistory}>
       <Switch>
         <Route component={Home} exact path="/"/>
-        <Route component={SignInPage} path="signin"/>
-        <Route component={SignUpPage} path="signup"/>
+        <Route component={SignInPage} path="/signin"/>
+        <Route component={SignUpPage} path="/signup"/>
         <Route component={NotFound}/>
       </Switch>
     </Router>
