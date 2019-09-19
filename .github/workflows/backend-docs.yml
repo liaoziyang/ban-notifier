@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Backend technical documentation
 on:
   push:	
     branches:	
