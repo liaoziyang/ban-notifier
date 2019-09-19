@@ -67,22 +67,22 @@ export default function SignUp(){
         <StyledForm>
           <FieldContainer>
             <StyledLabel htmlFor="email">Email address</StyledLabel>
-            <StyledField name="email" type="text"/>
+            <StyledField id="email" name="email" type="text"/>
             <StyledErrorMessage component="div" name="email"/>
           </FieldContainer>
           <FieldContainer>
             <StyledLabel htmlFor="username">Username</StyledLabel>
-            <StyledField name="username" type="text"/>
+            <StyledField id="username" name="username" type="text"/>
             <StyledErrorMessage component="div" name="username"/>
           </FieldContainer>
           <FieldContainer>
             <StyledLabel hmtlFor="password">Password</StyledLabel>
-            <StyledField name="password" type="password"/>
+            <StyledField id="password" name="password" type="password"/>
             <StyledErrorMessage component="div" name="password"/>
           </FieldContainer>
           <FieldContainer>
             <StyledLabel htmlFor="repeatPassword">Repeat password</StyledLabel>
-            <StyledField name="repeatPassword" type="password"/>
+            <StyledField id="repeatPassword" name="repeatPassword" type="password"/>
             <StyledErrorMessage component="div" name="repeatPassword"/>
           </FieldContainer>
             Already an account?
