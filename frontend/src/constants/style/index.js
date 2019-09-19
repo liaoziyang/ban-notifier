@@ -37,6 +37,19 @@ const Style = createGlobalStyle`
   outline: none;
   border-style: none;
   }
+  .Toastify__toast--error, .Toastify__toast--info, .Toastify__toast--warn, .Toastify__toast--success{
+    text-align: center;
+  }
+  .Toastify__toast--error{
+    background: #ff5e62;
+  }
+  .Toastify__toast--info, .Toastify__toast--success{
+    background: linear-gradient(90deg, #ff5e62 0%, #ff9966 100%);
+  }
+  .Toastify__toast--warn{
+    background:#ff9966;
+  }
+
 `
 
 // this is needed for cosmos as the wrapper proxy prefers a div
