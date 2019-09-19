@@ -16,9 +16,9 @@ const Container = styled.button`
   }
 `
 
-export default function Button({ text, colored, hoverDirection, submit }){
+export default function Button({ text, colored, hoverDirection, type }){
   return (
-    <Container colored={colored} hoverDirection={hoverDirection} type={submit ? 'submit' : 'button'}>
+    <Container colored={colored} hoverDirection={hoverDirection} type={type}>
       { text }
     </Container>
   )
@@ -27,11 +27,34 @@ export default function Button({ text, colored, hoverDirection, submit }){
 Button.propTypes = {
   colored:        PropTypes.bool,
   hoverDirection: PropTypes.oneOf(['horizontal', 'vertical']),
-  submit:         PropTypes.bool,
-  text:           PropTypes.string.isRequired
+  text:           PropTypes.string.isRequired,
+  type:           PropTypes.oneOf(['button', 'submit', 'reset'])
 }
 Button.defaultProps = {
   colored:        true,
   hoverDirection: 'vertical',
-  submit:         false
+  type:           'button'
+}
+
+export function LoadingButton({ text, colored, hoverDirection, type, loading }){
+  console.log(loading)
+  return (
+    <Container colored={colored} hoverDirection={hoverDirection} type={type}>
+      { text }
+    </Container>
+  )
+}
+
+LoadingButton.propTypes = {
+  colored:        PropTypes.bool,
+  hoverDirection: PropTypes.oneOf(['horizontal', 'vertical']),
+  loading:        PropTypes.bool,
+  text:           PropTypes.string.isRequired,
+  type:           PropTypes.oneOf(['button', 'submit', 'reset'])
+}
+
+LoadingButton.defaultProps = {
+  colored:        true,
+  hoverDirection: 'vertical',
+  type:           'submit'
 }
