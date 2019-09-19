@@ -3,7 +3,13 @@ name: Frontend CI
 on:
   push:
     paths:
+    paths:
       - 'frontend/*'
+      - 'frontend/*/*'
+      - 'frontend/*/*/*'
+      - 'frontend/*/*/*/*'
+      - 'frontend/*/*/*/*/*'
+      - 'frontend/*/*/*/*/*/*'        
 
 jobs:
   build:
