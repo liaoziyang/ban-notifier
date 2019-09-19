@@ -4,31 +4,42 @@ import { post } from '../../helpers/api'
 import { error } from '../../helpers/notifier'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { FetchButton } from '../layout/Button'
-
 import signupSchema from './signupSchema'
+
+const StyledForm = styled(Form)`
+  margin-top: 100px;
+  width: 60%;
+  height: 100%;
+`
+const FieldContainer = styled.div`
+  margin-top: 30px;
+  margin-bottom: 30px;
+`
 
 const StyledLabel = styled.label`
   color: ${(props) => props.theme.gray};
-  font-size: 0.825rem;
+  font-size: 1rem;
   margin-left: 2px;
-  margin-top: 30px;
+  display: block;
+  margin-bottom: 3px;
 `
 const StyledField = styled(Field)`
-  padding: 10px 15px;
-  border: 1px solid ${(props) => props.theme.gray};
+  padding: 15px 20px;
+  width: 100%;
+  border: 1px solid ${(props) => props.theme.text};
   border-radius: 5px;
   transition: border-color .3s ease-in-out;
   &:focus {
-    border-color: ${(props) => props.theme.red};
+    border-color: ${(props) => props.theme.orange};
   }
 `
 const StyledErrorMessage = styled(ErrorMessage)`
-  color: ${(props) => props.theme.red};
+  color: ${(props) => props.theme.orange};
   display: block;
-  font-size: 0.825rem;
+  font-size: 0.9rem;
   margin-left: 5px;
+  margin-top: 5px;
 `
-
 const StyledFetchButton = styled(FetchButton)`
   margin-top: 50px;
 `
@@ -43,7 +54,7 @@ export default function SignUp(){
   }
   return (
     <Formik
-      initialValues={{ username: '', password: '', repeatPassword: '' }}
+      initialValues={{ email: '', username: '', password: '', repeatPassword: '' }}
       onSubmit={async(values, actions) => {
         setSubmit({ submitting: true, successful: false })
         const res = await post('/auth/signup', values)
@@ -53,18 +64,30 @@ export default function SignUp(){
       }
       }
       render={() => (
-        <Form>
-          <StyledLabel htmlFor="username">Username</StyledLabel>
-          <StyledField name="username" type="text"/>
-          <StyledErrorMessage component="div" name="username"/>
-          <StyledLabel hmtlFor="password">Password</StyledLabel>
-          <StyledField name="password" type="password"/>
-          <StyledErrorMessage component="div" name="password"/>
-          <StyledLabel htmlFor="repeatPassword">Repeat password</StyledLabel>
-          <StyledField name="repeatPassword" type="password"/>
-          <StyledErrorMessage component="div" name="repeatPassword"/>
+        <StyledForm>
+          <FieldContainer>
+            <StyledLabel htmlFor="email">email address</StyledLabel>
+            <StyledField name="email" type="text"/>
+            <StyledErrorMessage component="div" name="email"/>
+          </FieldContainer>
+          <FieldContainer>
+            <StyledLabel htmlFor="username">Username</StyledLabel>
+            <StyledField name="username" type="text"/>
+            <StyledErrorMessage component="div" name="username"/>
+          </FieldContainer>
+          <FieldContainer>
+            <StyledLabel hmtlFor="password">Password</StyledLabel>
+            <StyledField name="password" type="password"/>
+            <StyledErrorMessage component="div" name="password"/>
+          </FieldContainer>
+          <FieldContainer>
+            <StyledLabel htmlFor="repeatPassword">Repeat password</StyledLabel>
+            <StyledField name="repeatPassword" type="password"/>
+            <StyledErrorMessage component="div" name="repeatPassword"/>
+          </FieldContainer>
+            Already an account?
           <StyledFetchButton submit={submit} text="sign up"/>
-        </Form>
+        </StyledForm>
       )}
       validateOnChange
       validationSchema={signupSchema}/>
