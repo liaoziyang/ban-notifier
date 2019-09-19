@@ -47,7 +47,7 @@ export class FaceitService {
     @Process({ name: '__default__' })
     async getMatchesForUsers(job: Job): Promise<void> {
         const users = await this.userRepository.getUsersWithFaceIt();
-        this.logger.verbose(`Found ${users.length} faceit users to check for new matches`);
+        this.logger.verbose(`Found ${users.length} Faceit users to check for new matches`);
         for (const user of users) {
             const history = await this.getPlayerHistory(user.faceitId);
 
