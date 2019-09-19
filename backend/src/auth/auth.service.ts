@@ -53,7 +53,7 @@ export class AuthService {
     }
 
     private async createSignedJwt(payload: JwtPayload) {
-        this.logger.debug(`Generating JWT with payload: "${JSON.stringify(payload)}"`)
+        this.logger.debug(`Generating JWT with payload: "${JSON.stringify(payload)}"`);
         const accessToken = await this.jwtService.sign(payload);
         return { accessToken };
     }
