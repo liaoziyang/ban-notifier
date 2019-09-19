@@ -35,6 +35,11 @@ Button.defaultProps = {
   hoverDirection: 'vertical',
   type:           'button'
 }
+/*
+
+Fetching BUTTON
+
+*/
 
 export function FetchButton({ text, colored, hoverDirection, loading }){
   return (
