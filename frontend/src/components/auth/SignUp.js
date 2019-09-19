@@ -40,9 +40,9 @@ export default function SignUp(){
       onSubmit={async(values, actions) => {
         setSubmit({ submitting: true, successful: false })
         const res = await post('/auth/signup', values)
-        res.status === 400 ? onErrors(actions,res.data.message) : setTimeout(() => {
+        res.status === 201 ? setTimeout(() => {
           setSubmit({ submitting: true, successful: true })
-        }, 3000)
+        }, 3000) : onErrors(actions,res.data.message)
       }
       }
       render={() => (
