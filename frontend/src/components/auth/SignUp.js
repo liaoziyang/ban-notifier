@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { post } from '../../helpers/api'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import Button from '../layout/Button'
-import * as Yup from 'yup'
+import signupSchema from './signupSchema'
+import { FetchButton } from '../layout/Button'
 
 const StyledLabel = styled.label`
   color: ${(props) => props.theme.gray};
@@ -27,31 +27,20 @@ const StyledErrorMessage = styled(ErrorMessage)`
   margin-left: 5px;
 `
 
+const StyledFetchButton = styled(FetchButton)`
+  margin-top: 50px;
+`
+
 export default function SignUp(){
-  const signupSchema = Yup.object().shape({
-    username: Yup.string()
-      .min(4, 'Too short!')
-      .max(20, 'Too Long!')
-      .matches(/[A-Za-z0-9_-]/g, 'should only contain letters, numbers, dash or underscores')
-      .required('This field is Required'),
-    password: Yup.string()
-      .min(8, 'Too short!')
-      .max(20, 'Too long!')
-      .matches(/(?=.*\W+)/g, 'should contain a special char')
-      .matches(/(?=.*[A-Z])/g, 'should contain a capital letter')
-      .matches(/(?=.*[a-z].*$)/g,'should contain a small letter')
-      .matches(/(?![.\n])/g, 'should contain a number')
-      .required('This field is required'),
-    repeatPassword: Yup.string()
-      .oneOf([Yup.ref('password'), null], 'passwords must match')
-  })
+  const [submit, setSubmit] = useState('default')
 
   return (
     <Formik
-      initialValues={{ username: 'test', password: 'test', repeatPassword: 'test' }}
-      onSubmit={async(values) => {
+      initialValues={{ username: '', password: '', repeatPassword: '' }}
+      onSubmit={async(values, actions) => {
+        setSubmit('submitting')
         const res = await post('/auth/signup', values)
-        res.status === 400 ? filterErrors(res.data.message) : console.log('is gelukt')
+        res.status === 400 ? onErrors(actions,res.data.message) : setSubmit('success')
       }
       }
       render={() => (
@@ -63,16 +52,19 @@ export default function SignUp(){
           <StyledField name="password" type="password"/>
           <StyledErrorMessage component="div" name="password"/>
           <StyledLabel htmlFor="repeatPassword">Repeat password</StyledLabel>
-          <StyledField name="repeatPassword"/>
+          <StyledField name="repeatPassword" type="password"/>
           <StyledErrorMessage component="div" name="repeatPassword"/>
-          <Button submit text="sign in"/>
+          <StyledFetchButton loading={submit} text="sign in"/>
         </Form>
       )}
+      validateOnChange
       validationSchema={signupSchema}/>
   )
 }
 
-function filterErrors(errorMessages){
+function onErrors(actions,errorMessages){
+  actions.setFieldValue('password', '')
+  actions.setFieldValue('repeatpassword', '')
   errorMessages.map((error) => {
     console.log(error)
   })

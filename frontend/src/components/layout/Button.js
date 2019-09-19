@@ -36,25 +36,24 @@ Button.defaultProps = {
   type:           'button'
 }
 
-export function LoadingButton({ text, colored, hoverDirection, type, loading }){
-  console.log(loading)
+export function FetchButton({ text, colored, hoverDirection, loading }){
   return (
-    <Container colored={colored} hoverDirection={hoverDirection} type={type}>
-      { text }
+    <Container colored={colored} hoverDirection={hoverDirection} type="submit">
+      { text } { loading === 'submitting' ? <div> loading.. </div> : null}
     </Container>
   )
 }
 
-LoadingButton.propTypes = {
+FetchButton.propTypes = {
   colored:        PropTypes.bool,
   hoverDirection: PropTypes.oneOf(['horizontal', 'vertical']),
-  loading:        PropTypes.bool,
-  text:           PropTypes.string.isRequired,
-  type:           PropTypes.oneOf(['button', 'submit', 'reset'])
+  loading:        PropTypes.oneOf(['default', 'submitting', 'success']),
+  text:           PropTypes.string.isRequired
 }
 
-LoadingButton.defaultProps = {
+FetchButton.defaultProps = {
   colored:        true,
   hoverDirection: 'vertical',
+  loading:          'default',
   type:           'submit'
 }
