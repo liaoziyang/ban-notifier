@@ -5,7 +5,7 @@ const signupSchema = Yup.object().shape({
     .min(4, 'Too short!')
     .max(20, 'Too Long!')
     .matches(/([A-Za-z0-9_-]*$)/, 'should only contain letters, numbers, dash or underscores')
-    .required('This field is Required'),
+    .required('This field is required'),
   password: Yup.string()
     .min(8, 'Too short!')
     .max(20, 'Too long!')
@@ -15,7 +15,7 @@ const signupSchema = Yup.object().shape({
     .matches(/(?![.\n])/g, 'should contain a number')
     .required('This field is required'),
   repeatPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'passwords must match.')
+    .oneOf([Yup.ref('password'), null], 'passwords must match.').required('This field is required')
 })
 
 export default signupSchema

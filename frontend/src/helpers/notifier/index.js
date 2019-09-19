@@ -9,14 +9,14 @@ const config = {
 }
 
 export function error(message, position = 'bottom-center'){
-  toast.error(message, { ...config, position: position })
+  return toast.error(message, { ...config, position: position })
 }
 export function success(message, position = 'bottom-center'){
-  toast.success(message, { ...config, position: position })
+  return toast.success(message, { ...config, position: position })
 }
 export function info(message, position = 'bottom-center'){
-  toast.info(message, { ...config, position: position })
+  return toast.info(message, { ...config, position: position })
 }
 export function warning(message, position = 'bottom-center'){
-  toast.warn(message, {...config, position: position };
+  return toast.warn(message, { ...config, position: position })
 }

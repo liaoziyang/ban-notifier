@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { post } from '../../helpers/api'
+import { error } from '../../helpers/notifier'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import signupSchema from './signupSchema'
 import { FetchButton } from '../layout/Button'
+
+import signupSchema from './signupSchema'
 
 const StyledLabel = styled.label`
   color: ${(props) => props.theme.gray};
@@ -33,7 +35,12 @@ const StyledFetchButton = styled(FetchButton)`
 
 export default function SignUp(){
   const [submit, setSubmit] = useState({ submitting: false, successful: false })
-
+  function onErrors(actions,errorMessage){
+    actions.setFieldValue('password', '')
+    actions.setFieldValue('repeatPassword', '')
+    setSubmit({ submitting: false, successful: false })
+    error(errorMessage)
+  }
   return (
     <Formik
       initialValues={{ username: '', password: '', repeatPassword: '' }}
@@ -64,10 +71,3 @@ export default function SignUp(){
   )
 }
 
-function onErrors(actions,errorMessages){
-  actions.setFieldValue('password', '')
-  actions.setFieldValue('repeatpassword', '')
-  errorMessages.map((error) => {
-    console.log(error)
-  })
-}
