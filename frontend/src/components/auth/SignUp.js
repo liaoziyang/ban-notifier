@@ -66,7 +66,7 @@ export default function SignUp(){
       render={() => (
         <StyledForm>
           <FieldContainer>
-            <StyledLabel htmlFor="email">email address</StyledLabel>
+            <StyledLabel htmlFor="email">Email address</StyledLabel>
             <StyledField name="email" type="text"/>
             <StyledErrorMessage component="div" name="email"/>
           </FieldContainer>

@@ -1,6 +1,9 @@
 import * as Yup from 'yup'
 
 const signupSchema = Yup.object().shape({
+  email:    Yup.string()
+    .email('This is not a valid email address')
+    .required('This field is required'),
   username: Yup.string()
     .min(4, 'Too short!')
     .max(20, 'Too Long!')
