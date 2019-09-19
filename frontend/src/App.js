@@ -3,7 +3,7 @@ import Routing from './components/Routing'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import 'normalize.css'
-import Style from './constants/style'
+import Style from './constants/globalStyle'
 
 export default function App(){
   return (
