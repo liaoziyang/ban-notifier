@@ -29,8 +29,10 @@ export class AuthService {
      * Register a new user
      * @param authCredentialsDto
      */
-    async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-        return this.userRepository.signUp(authCredentialsDto);
+    async signUp(authCredentialsDto: AuthCredentialsDto): Promise<{ accessToken: string }> {
+        const username = await this.userRepository.signUp(authCredentialsDto);
+        const payload: JwtPayload = { username };
+        return this.createSignedJwt(payload);
     }
 
     /**
@@ -46,8 +48,13 @@ export class AuthService {
         }
 
         const payload: JwtPayload = { username };
+        this.logger.debug(`User "${username}" signed in successfully.`);
+        return this.createSignedJwt(payload);
+    }
+
+    private async createSignedJwt(payload: JwtPayload) {
+        this.logger.debug(`Generating JWT with payload: "${JSON.stringify(payload)}"`)
         const accessToken = await this.jwtService.sign(payload);
-        this.logger.debug(`User "${username}" signed in successfully. Generated JWT with payload: "${JSON.stringify(payload)}"`);
         return { accessToken };
     }
 }

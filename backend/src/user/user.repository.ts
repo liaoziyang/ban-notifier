@@ -17,7 +17,7 @@ export class UserRepository extends Repository<User> {
      * Register a user, hashes password with salt
      * @param authCredentialsDto
      */
-    async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
+    async signUp(authCredentialsDto: AuthCredentialsDto): Promise<string> {
         const { username, password } = authCredentialsDto;
 
         const user = new User();
@@ -28,6 +28,7 @@ export class UserRepository extends Repository<User> {
         try {
             await user.save();
             this.logger.debug(`New user signed up with username ${username}`);
+            return username;
         } catch (error) {
             if (error.code === '23505') { // Duplicate username
                 throw new ConflictException('Username already exists');
