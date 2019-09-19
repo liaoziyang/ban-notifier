@@ -32,15 +32,17 @@ const StyledFetchButton = styled(FetchButton)`
 `
 
 export default function SignUp(){
-  const [submit, setSubmit] = useState('default')
+  const [submit, setSubmit] = useState({ submitting: false, successful: false })
 
   return (
     <Formik
       initialValues={{ username: '', password: '', repeatPassword: '' }}
       onSubmit={async(values, actions) => {
-        setSubmit('submitting')
+        setSubmit({ submitting: true, successful: false })
         const res = await post('/auth/signup', values)
-        res.status === 400 ? onErrors(actions,res.data.message) : setSubmit('success')
+        res.status === 400 ? onErrors(actions,res.data.message) : setTimeout(() => {
+          setSubmit({ submitting: true, successful: true })
+        }, 3000)
       }
       }
       render={() => (
@@ -54,7 +56,7 @@ export default function SignUp(){
           <StyledLabel htmlFor="repeatPassword">Repeat password</StyledLabel>
           <StyledField name="repeatPassword" type="password"/>
           <StyledErrorMessage component="div" name="repeatPassword"/>
-          <StyledFetchButton loading={submit} text="sign in"/>
+          <StyledFetchButton submit={submit} text="sign up"/>
         </Form>
       )}
       validateOnChange

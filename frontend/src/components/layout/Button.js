@@ -1,8 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import SpinnerToCheckmark from './SpinnerToCheckmark'
 
 const Container = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: ${(props) => props.colored ? props.theme.red : 'white'};
   padding: 10px 60px;
   color: ${(props) => props.colored ? 'white' : props.theme.red};
@@ -14,6 +18,10 @@ const Container = styled.button`
   &:hover{
     transform: ${(props) => props.hoverDirection === 'vertical' ? 'translateY(-6px)' : 'translateX(-6px)'};
   }
+`
+const TextContainer = styled.div`
+ margin-right: ${(props) => props.checkmarkVisible ? '10px' : '0'};
+ transition: .3s ease-in-out margin-right;
 `
 
 export default function Button({ text, colored, hoverDirection, type }){
@@ -36,15 +44,13 @@ Button.defaultProps = {
   type:           'button'
 }
 /*
-
 Fetching BUTTON
-
 */
 
-export function FetchButton({ text, colored, hoverDirection, loading }){
+export function FetchButton({ text, colored, hoverDirection, submit }){
   return (
     <Container colored={colored} hoverDirection={hoverDirection} type="submit">
-      { text } { loading === 'submitting' ? <div> loading.. </div> : null}
+      <TextContainer checkmarkVisible={submit.submitting}>{text}</TextContainer><SpinnerToCheckmark checkmark={submit.successful} visible={submit.submitting}/>
     </Container>
   )
 }
@@ -52,13 +58,12 @@ export function FetchButton({ text, colored, hoverDirection, loading }){
 FetchButton.propTypes = {
   colored:        PropTypes.bool,
   hoverDirection: PropTypes.oneOf(['horizontal', 'vertical']),
-  loading:        PropTypes.oneOf(['default', 'submitting', 'success']),
+  submit:         PropTypes.object,
   text:           PropTypes.string.isRequired
 }
 
 FetchButton.defaultProps = {
   colored:        true,
   hoverDirection: 'vertical',
-  loading:          'default',
   type:           'submit'
 }

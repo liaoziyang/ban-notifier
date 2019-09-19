@@ -19,63 +19,64 @@ const checkmarkKeyframe = keyframes`
   }
   20% {
     height: 0;
-    width: 1.75em;
+    width: 5px;
     opacity: 1;
   }
   40% {
-    height: 3.5em;
-    width: 1.75em;
+    height: 8px;
+    width:  5px;
     opacity: 1;
   }
   100% {
-    height: 3.5em;
-    width: 1.75em;
+    height: 8px;
+    width:  5px;
     opacity: 1;
   }
 `
 
 const Circle = styled.div`
-  margin-bottom: 3.5em;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  display: ${(props) => props.visible ? 'inline-block' : 'none'};
+  border: 2px solid rgba(0, 0, 0, 0.2);
   ${(props) => props.loadAnimation ? css`animation: ${loader} 1.2s infinite linear;` : css`animation: none;`};
-  ${(props) => props.loadAnimation ? css`border-left-color: #5cb85c;` : css`border-color: #5cb85c;`};
+  ${(props) => props.loadAnimation ? css`border-left-color: #ffffff;` : css`border-color: #ffffff;`};
   position: relative;
-  display: inline-block;
   vertical-align: top;
   border-radius: 50%;
-  width: 7em;
-  height: 7em;
-  transition: border 1s ease-out;
+  width: 20px;
+  height: 20px;
+  transition: border .5s ease-out;
 `
 const Checkmark = styled.div`
   display: block;
   :after{
     opacity: 1;
-    height: 3.5em;
-    width: calc(3.5em / 2);
+    height: 8px;
+    width: 5px;
     transform-origin: left top;
-    border-right: 3px solid #5cb85c;
-    border-top: 3px solid #5cb85c;
+    border-right: 2px solid #ffffff;
+    border-top: 2px solid #ffffff;
     content: '';
-    left: calc(7em / 6 + 7em / 12);
-    top: 3.5em;
+    left: calc(20px / 8 + 20px / 12);
+    top: 10px;
     position: absolute;
     animation: ${checkmarkKeyframe} 0.8s ease;
     transform: ${(props) => props.checkmarkAnimation ? 'scaleX(-1) rotate(135deg)' : 'none'};
   }
 `
 
-export default function SpinnerToCheckmark({ checkmark }){
+export default function SpinnerToCheckmark({ checkmark, visible }){
   return (
-    <Circle loadAnimation={!checkmark}>
-      { checkmark ? <Checkmark checkmarkAnimation={checkmark}/> : console.log(checkmark) }
+    <Circle loadAnimation={!checkmark} visible={visible}>
+      { checkmark ? <Checkmark checkmarkAnimation={checkmark}/> : null }
     </Circle>
   )
 }
 
 SpinnerToCheckmark.propTypes = {
-  checkmark: PropTypes.bool
+  checkmark: PropTypes.bool,
+  visible:   PropTypes.bool
 }
 SpinnerToCheckmark.defaultProps = {
-  checkmark: false
+  checkmark: false,
+  visible:   false
 }
